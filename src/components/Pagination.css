@@ -3,10 +3,11 @@
 button {
     background-color: #4b4b4b;
     color: white;
-    padding: 1rem 1.5rem;
     cursor: pointer;
     border-radius: 8px;
     border: none;
+    width: 48px;
+    height: 48px;
 }
 
 .pagination {
