@@ -11,6 +11,7 @@ import { updateUser_jhm } from '../apis/updateUser_jhm';
 import { updateCompany_jhm } from '../apis/updateCompany_jhm';
 import MyCompanyBox from '../components/MyCompanyBox';
 import CompareCompanyBox from '../components/CompareCompanyBox';
+import { motion } from 'framer-motion';
 
 // 현재 사용자 지정
 const INITIAL_USER_ID = 'fca6ef85-02ba-4868-a7b7-4f49ed16e881';
@@ -25,9 +26,10 @@ function MyComparisionPage() {
   const modalBackground = useRef();
   const modalComparisionBackground = useRef();
   const navigate = useNavigate();
+  const isAbleToCompare = myCompany && compareCompanies.length > 0;
 
   const btnCompareCompanyClass = `primary-round-button ${
-    myCompany && compareCompanies.length > 0 ? '' : 'disable'
+    isAbleToCompare ? '' : 'disable'
   }`;
 
   // 모달 팝업 시 스크롤 막기
@@ -132,7 +134,7 @@ function MyComparisionPage() {
   };
   // 기업 비교하기 클릭
   const handleDoCompareClick = () => {
-    if (!(myCompany && compareCompanies.length > 0)) return;
+    if (!isAbleToCompare) return;
     const sumCompanies = [...compareCompanies, myCompany];
     sumCompanies.sort((a, b) => b.actualInvest - a.actualInvest);
     navigate('/my-comparision/result', {
@@ -182,12 +184,14 @@ function MyComparisionPage() {
             />
           )}
           <div className="button-wrapper">
-            <div
+            <motion.div
+              initial={{ scale: 1 }}
+              whileTap={{ scale: isAbleToCompare ? 0.9 : 1 }}
               className={`${btnCompareCompanyClass} "last"`}
               onClick={handleDoCompareClick}
             >
               기업 비교하기
-            </div>
+            </motion.div>
           </div>
         </Container>
       </div>

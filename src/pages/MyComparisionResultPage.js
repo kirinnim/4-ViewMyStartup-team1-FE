@@ -9,6 +9,7 @@ import CompanyTableResult from '../components/CompanyTableResult';
 import CompanyTableRank from '../components/CompanyTableRank';
 import { getCompanyRank_jhm } from '../../src/apis/getCompanyRank_jhm';
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 const dropdownOptionsMap = {
   '누적 투자 금액 높은순': 'highestInvestment',
@@ -50,7 +51,7 @@ function MyComparisionResultPage() {
   return (
     <div className="modal-wrapper">
       <div className="header-underline"></div>
-      <div className="wrapper">
+      <div>
         <Header />
         <Container>
           <MyCompanyBox
@@ -69,12 +70,14 @@ function MyComparisionResultPage() {
             onChange={handleDropdownChange}
           />
           <div className="button-wrapper">
-            <div
+            <motion.div
+              initial={{ scale: 1 }}
+              whileTap={{ scale: 0.9 }}
               className="primary-round-button"
               onClick={handleInvestBtnClick}
             >
               나의 기업에 투자하기
-            </div>
+            </motion.div>
           </div>
         </Container>
       </div>
