@@ -12,6 +12,7 @@ import { updateCompany_jhm } from '../apis/updateCompany_jhm';
 import MyCompanyBox from '../components/MyCompanyBox';
 import CompareCompanyBox from '../components/CompareCompanyBox';
 import { motion } from 'framer-motion';
+import useDeviceSize from '../hooks/useDeviceSize';
 
 // 현재 사용자 지정
 const INITIAL_USER_ID = 'fca6ef85-02ba-4868-a7b7-4f49ed16e881';
@@ -27,6 +28,7 @@ function MyComparisionPage() {
   const modalComparisionBackground = useRef();
   const navigate = useNavigate();
   const isAbleToCompare = myCompany && compareCompanies.length > 0;
+  const { isMobile, isTablet } = useDeviceSize();
 
   const btnCompareCompanyClass = `primary-round-button ${
     isAbleToCompare ? '' : 'disable'
