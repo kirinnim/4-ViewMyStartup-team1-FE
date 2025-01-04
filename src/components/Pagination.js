@@ -6,8 +6,10 @@ const Pagination = ({
   totalItems,
   itemsPerPage,
 }) => {
+  console.log('this is Pagination');
   const totalPages = Math.ceil(totalItems / itemsPerPage);
   const maxButtons = 5; // 항상 5개의 버튼만 출력
+
   // currentPage를 기준으로 5개의 버튼을 보여주기 위한 startPage와 endPage 계산
   let startPage = Math.max(1, currentPage - 2); // currentPage를 기준으로 최소 1로 설정
   let endPage = Math.min(totalPages, startPage + maxButtons - 1); // totalPages를 넘지 않게 설정
@@ -34,6 +36,7 @@ const Pagination = ({
   }
 
   const goToNextPage = () => {
+    console.log('click next');
     // 5개씩 페이지를 넘기기
     if (currentPage < totalPages) {
       const nextPage = Math.min(currentPage + 5, totalPages);
@@ -60,18 +63,24 @@ const Pagination = ({
           &lt;
         </button>
 
-        {pageButtons.map((page, index) => (
-          <button
-            key={index}
-            style={{
-              backgroundColor: page === currentPage ? '#eb5230' : '#4b4b4b',
-            }}
-            onClick={() => onPageChange(page)}
-            disabled={page > totalPages} // 페이지가 실제로 없으면 비활성화
-          >
-            {page}
-          </button>
-        ))}
+        {
+          // totalItems !== 0 &&
+          pageButtons.map((page, index) => (
+            <button
+              key={index}
+              style={{
+                backgroundColor: page === currentPage ? '#eb5230' : '#4b4b4b',
+              }}
+              onClick={() => {
+                console.log('onpagechange');
+                return onPageChange(page);
+              }}
+              disabled={page > totalPages} // 페이지가 실제로 없으면 비활성화
+            >
+              {page}
+            </button>
+          ))
+        }
 
         <button
           className="next-btn"
