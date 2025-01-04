@@ -10,5 +10,7 @@ export default function setCategoryEngToKor(engCategory) {
     TRAVEL: '여행',
   };
 
-  return CATEGORY_MAP[engCategory];
+  const korCategory = CATEGORY_MAP[engCategory];
+
+  return korCategory;
 }

@@ -26,7 +26,9 @@ function MyComparisionPage() {
   const modalComparisionBackground = useRef();
   const navigate = useNavigate();
 
-  const btnCompareCompanyClass = `primary-round-button ${myCompany && compareCompanies.length > 0 ? '' : 'disable'}`;
+  const btnCompareCompanyClass = `primary-round-button ${
+    myCompany && compareCompanies.length > 0 ? '' : 'disable'
+  }`;
 
   // 모달 팝업 시 스크롤 막기
   if (popComparisionModal || popMyModal) {
@@ -55,13 +57,13 @@ function MyComparisionPage() {
     setCompareCompanies([]);
   };
   // 나의 기업 선택 모달의 빈 공간을 클릭했을 때 닫기
-  const handleModalClick = e => {
+  const handleModalClick = (e) => {
     if (e.target === modalBackground.current) {
       setPopMyModal(false);
     }
   };
   // 비교 기업 선택 모달의 빈 공간을 클릭했을 때 닫기
-  const handleComparisionModalClick = e => {
+  const handleComparisionModalClick = (e) => {
     if (e.target === modalComparisionBackground.current) {
       setPopComparisionModal(false);
     }
@@ -78,7 +80,7 @@ function MyComparisionPage() {
   const handleSelectClick = async (
     selectedCompany,
     newSelections,
-    noUpdateUser,
+    noUpdateUser
   ) => {
     if (!noUpdateUser) {
       // 사용자의 '최근 선택 기업' 목록을 업데이트
@@ -104,7 +106,7 @@ function MyComparisionPage() {
     setPopMyModal(false);
   };
   // 비교 기업 선택 모달에서 '선택완료' 버튼 클릭
-  const handleSaveComparisionClick = selectedCompanies => {
+  const handleSaveComparisionClick = (selectedCompanies) => {
     for (let i = 0; i < selectedCompanies.length; i++) {
       /** 기업의 '비교 기업 선택횟수'를 업데이트
        * - 모달에서 compareSelectionCount를 1씩 증가시킨 상태이므로 받은 값 그대로 업데이트
@@ -123,8 +125,8 @@ function MyComparisionPage() {
     setCompareCompanies(selectedCompanies);
   };
   // 비교 기업 선택 박스 목록에서 특정 기업 삭제 버튼 클릭
-  const handleDeleteComparisionClick = idx => {
-    setCompareCompanies(prevValues => {
+  const handleDeleteComparisionClick = (idx) => {
+    setCompareCompanies((prevValues) => {
       return [...prevValues.slice(0, idx), ...prevValues.slice(idx + 1)];
     });
   };
@@ -161,7 +163,7 @@ function MyComparisionPage() {
         />
       )}
       <div className="header-underline"></div>
-      <div className="wrapper">
+      <div>
         <Header />
         <Container>
           <MyCompanyBox
