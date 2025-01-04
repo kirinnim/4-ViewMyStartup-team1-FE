@@ -5,8 +5,8 @@ const Pagination = ({
   currentPage, // 현재 활성화된 페이지 번호
   onPageChange, // 페이지가 변경될 때 실행할 콜백 함수
   totalItems, // 전체 아이템의 개수
-  itemsPerPage, // 페이지 당 아이템의 개수
 }) => {
+  const itemsPerPage = 2; // 한 페이지에 보여줄 아이템의 개수
   const totalPagesCount = Math.ceil(totalItems / itemsPerPage); // 전체 페이지 수 계산
   const maxButtonsCount = 5; // 항상 5개의 버튼을 보여줌
   const currentGroup = Math.floor((currentPage - 1) / maxButtonsCount); // 현재 페이지 그룹 계산
@@ -20,8 +20,10 @@ const Pagination = ({
 
   // 다음 그룹으로 이동
   const goToNextPage = () => {
-    const nextPageGroupStart = Math.min(startPageNum + maxButtonsCount, totalPagesCount); // 다음 그룹의 첫 번째 페이지
-    onPageChange(nextPageGroupStart); // 다음 그룹의 첫 번째 페이지로 이동
+    // 다음 그룹의 첫 번째 페이지로 이동
+    if (endPageNum < totalPagesCount) {
+      onPageChange(startPageNum + maxButtonsCount); // 다음 그룹의 첫 번째 페이지로 이동
+    }
   };
 
   // 이전 그룹으로 이동
@@ -29,6 +31,9 @@ const Pagination = ({
     const previousPageGroupStart = Math.max(startPageNum - maxButtonsCount, 1); // 이전 그룹의 첫 번째 페이지
     onPageChange(previousPageGroupStart); // 이전 그룹의 첫 번째 페이지로 이동
   };
+
+  // 다음 그룹 버튼 비활성화 조건
+  const isNextButtonDisabled = endPageNum >= totalPagesCount;
 
   return (
     <div>
@@ -62,7 +67,7 @@ const Pagination = ({
           <button
             className="next-btn"
             onClick={goToNextPage}
-            disabled={currentPage > totalPagesCount - maxButtonsCount} // 마지막 그룹에서는 비활성화
+            disabled={isNextButtonDisabled} // 마지막 그룹에서는 비활성화
           >
             &gt;
           </button>
