@@ -219,6 +219,7 @@ export default function SelectMyCompanyModal({
             onPageChange={setPage}
             totalItems={searchCount}
             itemsPerPage={ITEMSPERPAGE_COUNT}
+            buttonSize={32}
           />
         )}
       </div>
