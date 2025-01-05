@@ -12,7 +12,6 @@ function getLinkStyle({ isActive }) {
 }
 
 function Header() {
-  console.log('헤더가 렌더링되었어요.');
   return (
     <header>
       <Link to="/">

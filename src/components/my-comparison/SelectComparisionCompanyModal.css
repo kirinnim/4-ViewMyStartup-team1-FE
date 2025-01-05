@@ -97,3 +97,19 @@
 .button-wrapper.done > .primary-round-button-outline {
   margin-right: 1.6rem;
 }
+
+@media (max-width: 743px) {
+  .modal-comparision-content {
+    width: 100%;
+    max-width: 49.6rem;
+    margin: 0 1.6rem 0 1.6rem;
+    padding: 1.6rem;
+  }
+  .modal-comparision-content-header {
+    font-size: 1.6rem;
+  }
+  .latest-selected-companies-title,
+  .search-result-companies-title {
+    font-size: 1.6rem;
+  }
+}
