@@ -35,7 +35,7 @@ export default function SelectComparisionCompanyModal({
   const modalClassName = `modal-comparision-content ${
     isShowAlert ? 'hide' : ''
   }`;
-  const btnSelectDoneClass = `primary-round-button ${
+  const btnSelectDoneClass = `primary-round-button-modal ${
     selectedCompanies.length > 0 ? '' : 'disable'
   }`;
 
@@ -210,6 +210,7 @@ export default function SelectComparisionCompanyModal({
             onPageChange={setPage}
             totalItems={parseInt(searchCount)}
             itemsPerPage={ITEMSPERPAGE_COUNT}
+            buttonSize={32}
           />
         )}
         <div className="button-wrapper done">

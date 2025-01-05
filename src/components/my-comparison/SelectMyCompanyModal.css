@@ -105,6 +105,12 @@
   }
   .latest-selected-companies-title,
   .search-result-companies-title {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+  }
+  #searchName {
+    height: 4rem;
+  }
+  .ic-search {
+    top: 3.2rem;
   }
 }

@@ -3,6 +3,7 @@
 .company-list-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .company-list-widget {
   height: 4.8rem;
@@ -44,4 +45,20 @@
 .button-text-wrapper > img {
   margin-right: 0.2rem;
   opacity: 0.5;
+}
+
+@media (max-width: 743px) {
+  .company-list-widget {
+    height: 4rem;
+  }
+  .company-image-list {
+    width: 4rem;
+    height: 4rem;
+  }
+  .company-widget-name-list {
+    font-size: 1.4rem;
+  }
+  .company-widget-category-list {
+    font-size: 1.2rem;
+  }
 }

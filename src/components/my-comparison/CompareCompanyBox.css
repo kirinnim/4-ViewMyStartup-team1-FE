@@ -26,6 +26,7 @@
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 1.3;
+  flex-wrap: wrap;
 }
 .company-box-comparision > div:not(:last-child) {
   margin-right: 1.6rem;
@@ -34,5 +35,23 @@
 @media (max-width: 1199px) {
   .company-box-comparision {
     height: 24rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .company-box-comparision {
+    height: 34.8rem;
+  }
+  .comparision-company-title {
+    font-size: 1.6rem;
+  }
+  .select-comparision-company-max {
+    font-size: 1.2rem;
+  }
+  .company-box-comparision > div:not(:last-child) {
+    margin-right: 0.8rem;
+  }
+  .company-box-comparision > div:nth-child(3) {
+    margin-right: 0;
   }
 }
