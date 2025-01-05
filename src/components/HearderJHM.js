@@ -3,10 +3,12 @@
 import './HeaderJHM.css';
 import imgLogo from '../assets/images/vms_logo_2x.png';
 import { Link } from 'react-router-dom';
+import React from 'react';
 
-export default function Header() {
+ function Header() {
+  console.log('헤더가 렌더링되었어요.');
   return (
-    <header className="dkdkd">
+    <header>
       <Link to="/">
         <img
           className="header-img"
@@ -30,3 +32,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default React.memo(Header);

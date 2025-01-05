@@ -7,6 +7,7 @@ const Pagination = ({
   itemsPerPage, // 한 페이지에 보여줄 아이템의 개수
   buttonSize = 48, // 버튼 크기 (기본값은 48px, 32px 또는 다른 크기도 가능)
 }) => {
+
   const totalPagesCount = Math.ceil(totalItems / itemsPerPage); // 전체 페이지 수 계산
   const maxButtonsCount = 5; // 항상 5개의 버튼을 보여줌
   const currentGroup = Math.floor((currentPage - 1) / maxButtonsCount); // 현재 페이지 그룹 계산
