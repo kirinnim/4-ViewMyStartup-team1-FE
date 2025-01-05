@@ -1,8 +1,9 @@
 // 조형민
 
-import setCategoryEngToKor from '../utils/setCategoryEngToKor';
+import setCategoryEngToKor from '../../utils/setCategoryEngToKor';
 import './CompanyWidgetHor.css';
-import icCheck from '../assets/images/ic_check.png';
+import icCheck from '../../assets/images/ic_check.png';
+import { motion } from 'framer-motion';
 
 export default function CompanyWidgetHor({
   company,
@@ -20,7 +21,13 @@ export default function CompanyWidgetHor({
   const { name, imageUrl, category, compareSelectionCount } = company;
   const korCategory = setCategoryEngToKor(category);
   const btnText = BUTTONS[btnStatus];
-  const btnClassName = `primary-rectangle-button-outline ${btnStatus === 'selectCancel' ? 'white' : btnStatus === 'selectDone' ? 'disable' : ''}`;
+  const btnClassName = `primary-rectangle-button-outline ${
+    btnStatus === 'selectCancel'
+      ? 'white'
+      : btnStatus === 'selectDone'
+      ? 'disable'
+      : ''
+  }`;
 
   const handleButtonClick = () => {
     if (isMyCompany) {

@@ -1,6 +1,6 @@
 /* 조형민 */
 
-.modal-background {
+.modal-comparision-background {
   z-index: 1;
   width: 100%;
   /* min-height: 100vh; */
@@ -13,7 +13,7 @@
   align-items: center;
   background-color: #000000cc;
 }
-.modal-content {
+.modal-comparision-content {
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
   position: fixed;
@@ -25,14 +25,10 @@
   border-radius: 1.6rem;
   background-color: #212121;
 }
-.modal-content.hide {
+.modal-comparision-content.hide {
   display: none;
 }
-.modal-close-icon-wrapper {
-  display: flex;
-  justify-content: right;
-}
-.modal-content-header {
+.modal-comparision-content-header {
   height: 3.2rem;
   font-size: 2rem;
   font-weight: 600;
@@ -41,10 +37,10 @@
   justify-content: space-between;
   align-items: center;
 }
-.modal-content-header > img {
+.modal-comparision-content-header > img {
   cursor: pointer;
 }
-.modal-content-header > img:hover {
+.modal-comparision-content-header > img:hover {
   opacity: 0.5;
 }
 #searchName {
@@ -92,4 +88,28 @@
 .latest-selected-companies-list > div:not(:last-child),
 .search-result-companies-list > div:not(:last-child) {
   margin-bottom: 1.2rem;
+}
+.button-wrapper.done {
+  margin-top: 3rem;
+  color: #ffffff;
+  display: flex;
+}
+.button-wrapper.done > .primary-round-button-outline {
+  margin-right: 1.6rem;
+}
+
+@media (max-width: 743px) {
+  .modal-comparision-content {
+    width: 100%;
+    max-width: 49.6rem;
+    margin: 0 1.6rem 0 1.6rem;
+    padding: 1.6rem;
+  }
+  .modal-comparision-content-header {
+    font-size: 1.6rem;
+  }
+  .latest-selected-companies-title,
+  .search-result-companies-title {
+    font-size: 1.6rem;
+  }
 }

@@ -1,6 +1,6 @@
 // 조형민
 
-import setCategoryEngToKor from '../utils/setCategoryEngToKor';
+import setCategoryEngToKor from '../../utils/setCategoryEngToKor';
 import './CompanyWidget.css';
 
 export default function CompanyWidget({ company }) {

@@ -89,3 +89,13 @@ a {
 .primary-rectangle-button-outline.disable:hover {
   opacity: 1;
 }
+
+@media (max-width: 743px) {
+  .primary-round-button,
+  .primary-round-button-small,
+  .primary-round-button-outline {
+    width: 13.5rem;
+    height: 4rem;
+    font-size: 1.4rem;
+  }
+}

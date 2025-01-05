@@ -1,14 +1,15 @@
 // 조형민
 
 import { useEffect, useRef, useState } from 'react';
-import icDelete from '../assets/images/ic_delete.png';
-import icDeleteCircleSmall from '../assets/images/ic_delete_circle_small.png';
-import icSearch from '../assets/images/ic_search.png';
+import { motion } from 'framer-motion';
+import icDelete from '../../assets/images/ic_delete.png';
+import icDeleteCircleSmall from '../../assets/images/ic_delete_circle_small.png';
+import icSearch from '../../assets/images/ic_search.png';
 import './SelectComparisionCompanyModal.css';
-import CompanyWidgetHor from './CompanytWidgetHor';
-import { getCompaniesModal_jhm } from '../apis/getComapniesModal_jhm.js';
-import AlertModal from './AlertModal';
-import Pagination from './Pagination.js';
+import CompanyWidgetHor from './CompanytWidgetHor.js';
+import { getCompaniesModal_jhm } from '../../apis/getComapniesModal_jhm.js';
+import AlertModal from '../AlertModal.js';
+import Pagination from '../Pagination.js';
 
 const ITEMSPERPAGE_COUNT = 5;
 
@@ -212,12 +213,22 @@ export default function SelectComparisionCompanyModal({
           />
         )}
         <div className="button-wrapper done">
-          <div className="primary-round-button-outline" onClick={onCloseClick}>
+          <motion.div
+            initial={{ scale: 1 }}
+            whileTap={{ scale: 0.9 }}
+            className="primary-round-button-outline"
+            onClick={onCloseClick}
+          >
             취소
-          </div>
-          <div className={btnSelectDoneClass} onClick={handleSaveClick}>
+          </motion.div>
+          <motion.div
+            initial={{ scale: 1 }}
+            whileTap={{ scale: selectedCompanies.length !== 0 ? 0.9 : 1 }}
+            className={btnSelectDoneClass}
+            onClick={handleSaveClick}
+          >
             선택완료
-          </div>
+          </motion.div>
         </div>
       </div>
 

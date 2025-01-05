@@ -1,8 +1,8 @@
 // 조형민
 
-import setCategoryEngToKor from '../utils/setCategoryEngToKor';
+import setCategoryEngToKor from '../../utils/setCategoryEngToKor';
 import './ComparisionCompanyWidget.css';
-import icMinus from '../assets/images/ic_minus.png';
+import icMinus from '../../assets/images/ic_minus.png';
 
 export default function ComparisionCompanyWidget({ company, index, onDelete }) {
   const { name, imageUrl, category } = company;

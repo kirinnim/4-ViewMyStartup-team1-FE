@@ -1,8 +1,8 @@
 // 조형민
 
+import setCategoryEngToKor from '../../utils/setCategoryEngToKor';
 import './CompanyTableRank.css';
-import setCategoryEngToKor from '../utils/setCategoryEngToKor';
-import Dropdown from './Dropdown';
+import Dropdown from '../Dropdown';
 import { useState } from 'react';
 
 function CompanyTableBody({ company, isLast, isMyCompany }) {
@@ -16,7 +16,9 @@ function CompanyTableBody({ company, isLast, isMyCompany }) {
     employeesCount,
     rank,
   } = company;
-  const bodyClassName = `${isMyCompany ? 'company-table-rank-body-my' : 'company-table-rank-body'} ${isLast ? '' : 'underline'}`;
+  const bodyClassName = `${
+    isMyCompany ? 'company-table-rank-body-my' : 'company-table-rank-body'
+  } ${isLast ? '' : 'underline'}`;
   // 억단위로 바꾸기
   function convertNum(num) {
     const newNum = Math.round((num / 100000000) * 10) / 10;
@@ -41,7 +43,9 @@ function CompanyTableBody({ company, isLast, isMyCompany }) {
         <div className="body-rank-item2-desc">{description}</div>
       </div>
       <div className="body-rank-item3">{setCategoryEngToKor(category)}</div>
-      <div className="body-rank-item4">{`${convertNum(actualInvest)}억 원`}</div>
+      <div className="body-rank-item4">{`${convertNum(
+        actualInvest
+      )}억 원`}</div>
       <div className="body-rank-item5">{`${convertNum(revenue)}억 원`}</div>
       <div className="body-rank-item6">{`${employeesCount}명`}</div>
     </div>
@@ -58,7 +62,7 @@ export default function CompanyTableRank({ companies, myCompanyId, onChange }) {
     '고용 인원 적은순',
   ];
   const [dropdownValue, setDropdownValue] = useState('매출액 높은순');
-  const handleDropdownChange = value => {
+  const handleDropdownChange = (value) => {
     onChange(value);
     setDropdownValue(value);
   };
