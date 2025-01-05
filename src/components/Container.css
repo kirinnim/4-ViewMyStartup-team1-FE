@@ -5,6 +5,17 @@
   max-width: 120rem;
   color: #ffffff;
   margin: 0 auto;
-  padding: 0 2rem 10rem;
-  padding-bottom: 10rem;
+  padding: 0 0 10rem;
+}
+
+@media (max-width: 1199px) {
+  .container {
+    padding: 0 2.4rem 8rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .container {
+    padding: 0 1.6rem 5rem;
+  }
 }

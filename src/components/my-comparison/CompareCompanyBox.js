@@ -27,6 +27,13 @@ export default function CompareCompanyBox({
         </motion.div>
       </div>
       <div className="company-box-comparision">
+        {compareCompanies.length === 0 && (
+          <div>
+            아직 추가한 기업이 없어요,
+            <br />
+            버튼을 눌러 기업을 추가해보세요!
+          </div>
+        )}
         {compareCompanies.map((company, index) => {
           return (
             <ComparisionCompanyWidget

@@ -7,11 +7,20 @@
   justify-content: space-between;
   align-items: center;
 }
+.company-box-wrapper {
+  margin: 1.6rem 0 2.4rem;
+  border-radius: 0.4rem;
+}
+.company-box-wrapper.dotted {
+  padding: 1.6rem;
+  margin: 1.6rem 0 2.4rem;
+  border-radius: 0.4rem;
+  border: 1px dashed #212121;
+}
 .company-box {
   height: 30rem;
   background-color: #212121;
   display: flex;
-  margin: 1.6rem 0 2.4rem;
   justify-content: center;
   align-items: center;
   border-radius: 0.4rem;
@@ -49,4 +58,25 @@
   align-items: center;
   border-radius: 3rem;
   margin-bottom: 1.6rem;
+}
+
+@media (max-width: 1199px) {
+  .company-box {
+    height: 24rem;
+  }
+}
+
+@media (max-width: 743px) {
+  .company-box {
+    height: 18rem;
+  }
+  .my-company-title {
+    font-size: 1.6rem;
+  }
+  .selection-cancel-button {
+    font-size: 1.2rem;
+  }
+  .add-button-widget > span {
+    font-size: 1.4rem;
+  }
 }

@@ -2,11 +2,11 @@
 
 import { useLocation } from 'react-router-dom';
 import Container from '../components/Container';
-import Header from '../components/HearderJHM';
-import MyCompanyBox from '../components/MyCompanyBox';
+import Header from '../components/my-comparison/HearderJHM';
+import MyCompanyBox from '../components/my-comparison/MyCompanyBox';
 import './MyComparisionResultPage.css';
-import CompanyTableResult from '../components/CompanyTableResult';
-import CompanyTableRank from '../components/CompanyTableRank';
+import CompanyTableResult from '../components/my-comparison/CompanyTableResult';
+import CompanyTableRank from '../components/my-comparison/CompanyTableRank';
 import { getCompanyRank_jhm } from '../../src/apis/getCompanyRank_jhm';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
@@ -33,7 +33,7 @@ function MyComparisionResultPage() {
       setLoadingError(null);
       rankCompanies = await getCompanyRank_jhm(
         location.state.myCompany.id,
-        orderBy
+        orderBy,
       );
     } catch (error) {
       setLoadingError(error);

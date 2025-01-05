@@ -1,8 +1,8 @@
 // 조형민
 import { useState } from 'react';
-import setCategoryEngToKor from '../utils/setCategoryEngToKor';
+import setCategoryEngToKor from '../../utils/setCategoryEngToKor';
 import './CompanyTableResult.css';
-import Dropdown from './Dropdown';
+import Dropdown from '../Dropdown';
 
 function CompanyTableBody({ company, isLast, isMyCompany }) {
   const {
@@ -14,7 +14,9 @@ function CompanyTableBody({ company, isLast, isMyCompany }) {
     revenue,
     employeesCount,
   } = company;
-  const bodyClassName = `${isMyCompany ? 'company-table-body-my' : 'company-table-body'} ${isLast ? '' : 'underline'}`;
+  const bodyClassName = `${
+    isMyCompany ? 'company-table-body-my' : 'company-table-body'
+  } ${isLast ? '' : 'underline'}`;
   // 억단위로 바꾸기
   function convertNum(num) {
     const newNum = Math.round((num / 100000000) * 10) / 10;
@@ -61,12 +63,12 @@ export default function CompanyTableResult({ companies, myCompanyId }) {
   switch (order) {
     case '누적 투자 금액 높은순':
       sortedCompanies = companies.sort(
-        (a, b) => b.actualInvest - a.actualInvest,
+        (a, b) => b.actualInvest - a.actualInvest
       );
       break;
     case '누적 투자 금액 낮은순':
       sortedCompanies = companies.sort(
-        (a, b) => a.actualInvest - b.actualInvest,
+        (a, b) => a.actualInvest - b.actualInvest
       );
       break;
     case '매출액 높은순':
@@ -77,17 +79,17 @@ export default function CompanyTableResult({ companies, myCompanyId }) {
       break;
     case '고용 인원 많은순':
       sortedCompanies = companies.sort(
-        (a, b) => b.employeesCount - a.employeesCount,
+        (a, b) => b.employeesCount - a.employeesCount
       );
       break;
     case '고용 인원 적은순':
       sortedCompanies = companies.sort(
-        (a, b) => a.employeesCount - b.employeesCount,
+        (a, b) => a.employeesCount - b.employeesCount
       );
       break;
     default:
       sortedCompanies = companies.sort(
-        (a, b) => b.actualInvest - a.actualInvest,
+        (a, b) => b.actualInvest - a.actualInvest
       );
   }
   const handleDropdownChange = (value) => {

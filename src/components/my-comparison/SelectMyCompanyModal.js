@@ -1,15 +1,15 @@
 // 조형민
 
 import React, { useEffect, useRef, useState } from 'react';
-import icDelete from '../assets/images/ic_delete.png';
-import icDeleteCircleSmall from '../assets/images/ic_delete_circle_small.png';
-import icSearch from '../assets/images/ic_search.png';
+import icDelete from '../../assets/images/ic_delete.png';
+import icDeleteCircleSmall from '../../assets/images/ic_delete_circle_small.png';
+import icSearch from '../../assets/images/ic_search.png';
 import './SelectMyCompanyModal.css';
-import CompanyWidgetHor from './CompanytWidgetHor';
-import { getLatestSelections_jhm } from '../apis/getLatestSelections_jhm.js';
-import { getCompaniesModal_jhm } from '../apis/getComapniesModal_jhm.js';
-import AlertModal from './AlertModal';
-import Pagination from './Pagination.js';
+import CompanyWidgetHor from './CompanytWidgetHor.js';
+import { getLatestSelections_jhm } from '../../apis/getLatestSelections_jhm.js';
+import { getCompaniesModal_jhm } from '../../apis/getComapniesModal_jhm.js';
+import AlertModal from '../AlertModal.js';
+import Pagination from '../Pagination.js';
 
 // 현재 사용자 id 지정
 const INITIAL_USER_ID = 'fca6ef85-02ba-4868-a7b7-4f49ed16e881';

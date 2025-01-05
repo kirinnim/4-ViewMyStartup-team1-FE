@@ -1,6 +1,8 @@
+// 조형민
+
 import { useNavigate } from 'react-router-dom';
-import icPlus from '../assets/images/ic_plus.png';
-import icRestart from '../assets/images/ic_restart.png';
+import icPlus from '../../assets/images/ic_plus.png';
+import icRestart from '../../assets/images/ic_restart.png';
 import CompanyWidget from './CompanyWidget';
 import './MyCompanyBox.css';
 import { motion } from 'framer-motion';
@@ -18,6 +20,7 @@ export default function MyCompanyBox({
   }`;
   const btnTxt = `${isResult ? '다른 기업 비교하기' : '전체 초기화'}`;
   const btnClassName = `primary-round-button-small ${isResult ? 'wide' : ''}`;
+  const boxClassName = `company-box-wrapper ${myCompany ? '' : 'dotted'}`;
   const navigate = useNavigate();
 
   const handleRoundBtnClick = () => {
@@ -43,22 +46,24 @@ export default function MyCompanyBox({
           </motion.div>
         )}
       </div>
-      <div className="company-box">
-        {myCompany && !isResult && (
-          <div className="selection-cancel-button" onClick={onCancelClick}>
-            선택 취소
-          </div>
-        )}
-        {myCompany ? (
-          <CompanyWidget company={myCompany} />
-        ) : (
-          <div className="add-button-widget" onClick={onAddMyClick}>
-            <div className="plus-icon">
-              <img src={icPlus} alt="나의 기업선택" width="20px" />
+      <div className={boxClassName}>
+        <div className="company-box">
+          {myCompany && !isResult && (
+            <div className="selection-cancel-button" onClick={onCancelClick}>
+              선택 취소
             </div>
-            <span>기업 추가</span>
-          </div>
-        )}
+          )}
+          {myCompany ? (
+            <CompanyWidget company={myCompany} />
+          ) : (
+            <div className="add-button-widget" onClick={onAddMyClick}>
+              <div className="plus-icon">
+                <img src={icPlus} alt="나의 기업선택" width="20px" />
+              </div>
+              <span>기업 추가</span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

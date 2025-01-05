@@ -1,8 +1,8 @@
 // 조형민
 
-import setCategoryEngToKor from '../utils/setCategoryEngToKor';
+import setCategoryEngToKor from '../../utils/setCategoryEngToKor';
 import './CompanyWidgetHor.css';
-import icCheck from '../assets/images/ic_check.png';
+import icCheck from '../../assets/images/ic_check.png';
 import { motion } from 'framer-motion';
 
 export default function CompanyWidgetHor({

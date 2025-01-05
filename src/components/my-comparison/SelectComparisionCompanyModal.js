@@ -1,15 +1,15 @@
 // 조형민
 
 import { useEffect, useRef, useState } from 'react';
-import icDelete from '../assets/images/ic_delete.png';
-import icDeleteCircleSmall from '../assets/images/ic_delete_circle_small.png';
-import icSearch from '../assets/images/ic_search.png';
-import './SelectComparisionCompanyModal.css';
-import CompanyWidgetHor from './CompanytWidgetHor';
-import { getCompaniesModal_jhm } from '../apis/getComapniesModal_jhm.js';
-import AlertModal from './AlertModal';
-import Pagination from './Pagination.js';
 import { motion } from 'framer-motion';
+import icDelete from '../../assets/images/ic_delete.png';
+import icDeleteCircleSmall from '../../assets/images/ic_delete_circle_small.png';
+import icSearch from '../../assets/images/ic_search.png';
+import './SelectComparisionCompanyModal.css';
+import CompanyWidgetHor from './CompanytWidgetHor.js';
+import { getCompaniesModal_jhm } from '../../apis/getComapniesModal_jhm.js';
+import AlertModal from '../AlertModal.js';
+import Pagination from '../Pagination.js';
 
 const ITEMSPERPAGE_COUNT = 5;
 
