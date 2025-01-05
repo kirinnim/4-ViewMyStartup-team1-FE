@@ -8,9 +8,34 @@ import { useEffect, useState } from 'react';
 import Pagination from '../components/Pagination';
 import InvestmentList from '../components/InvestmentList';
 import { fetchInvestments } from '../apis/getCompanies_ksh';
-import CompanyInvestmentModal from '../components/CompanyInvestmentModal';
+// import CompanyInvestmentModal from '../components/CompanyInvestmentModal';
 
 function InvestmentStatusPage() {
+  // const [modalVisible, setModalVisible] = useState(false);
+  // const [selectedCompany, setSelectedCompany] = useState({
+  //   name: '',
+  //   category: '',
+  //   info: '',
+  // });
+  // const [investment, setInvestment] = useState({
+  //   investorName: '',
+  //   amount: 0,
+  //   comment: '',
+  //   password: '',
+  //   passwordConfirm: '',
+  // });
+
+  // const openModal = () => setModalVisible(true);
+  // const closeModal = () => setModalVisible(false);
+
+  // const updateInvestment = (key, value) => {
+  //   setInvestment({
+  //     ...investment,
+  //     [key]: value,
+  //   });
+  // };
+  
+
   const [selectedOption, setSelectedOption] = useState(
     'View My Startup 투자 금액 높은순',
   );
@@ -76,7 +101,8 @@ function InvestmentStatusPage() {
     <div className="investment-status-page">
       <Header />
       <Container>
-        <CompanyInvestmentModal />
+        {/* <button className="investment-button" onClick={openModal}>모달 열기</button>
+        { modalVisible && (<CompanyInvestmentModal company={selectedCompany} investment={investment} onClose={closeModal} onUpdateInvestment={updateInvestment} />) } */}
         <div className="investment-status">
           <p>투자 현황</p>
           <Dropdown

@@ -1,12 +1,12 @@
-// 김세환
 import './Pagination.css';
 
 const Pagination = ({
   currentPage, // 현재 활성화된 페이지 번호
   onPageChange, // 페이지가 변경될 때 실행할 콜백 함수
   totalItems, // 전체 아이템의 개수
+  itemsPerPage, // 한 페이지에 보여줄 아이템의 개수
+  buttonSize = 48, // 버튼 크기 (기본값은 48px, 32px 또는 다른 크기도 가능)
 }) => {
-  const itemsPerPage = 2; // 한 페이지에 보여줄 아이템의 개수
   const totalPagesCount = Math.ceil(totalItems / itemsPerPage); // 전체 페이지 수 계산
   const maxButtonsCount = 5; // 항상 5개의 버튼을 보여줌
   const currentGroup = Math.floor((currentPage - 1) / maxButtonsCount); // 현재 페이지 그룹 계산
@@ -35,13 +35,16 @@ const Pagination = ({
   // 다음 그룹 버튼 비활성화 조건
   const isNextButtonDisabled = endPageNum >= totalPagesCount;
 
+  // 버튼 크기 클래스 정의 (48px과 32px 크기로 설정)
+  const buttonSizeClass = buttonSize === 48 ? 'btn-large' : buttonSize === 32 ? 'btn-small' : 'btn-medium'; // 기본값은 medium
+
   return (
     <div>
       <div className="pagination">
         {/* 이전 그룹 버튼 */}
         {totalPagesCount > maxButtonsCount && (
           <button
-            className="prev-btn"
+            className={`prev-btn ${buttonSizeClass}`}
             onClick={goToPreviousPage}
             disabled={currentPage <= maxButtonsCount} // 첫 그룹에서는 비활성화
           >
@@ -53,6 +56,7 @@ const Pagination = ({
         {pageButtons.map((page) => (
           <button
             key={page}
+            className={buttonSizeClass}
             style={{
               backgroundColor: page === currentPage ? '#eb5230' : '#4b4b4b',
             }}
@@ -65,7 +69,7 @@ const Pagination = ({
         {/* 다음 그룹 버튼 */}
         {totalPagesCount > maxButtonsCount && (
           <button
-            className="next-btn"
+            className={`next-btn ${buttonSizeClass}`}
             onClick={goToNextPage}
             disabled={isNextButtonDisabled} // 마지막 그룹에서는 비활성화
           >
