@@ -4,8 +4,9 @@ import { COMPANIES } from '../db/companyMock';
 import { useParams } from 'react-router-dom';
 import './CompanyDetailInfo.css';
 
-export default function CompanyDetailInfo() {
-  const company = COMPANIES[10];
+export default function CompanyDetailInfo({ company }) {
+  console.log(company);
+  // const company = COMPANIES[10];
   /* 그리드 완료 후 아래 코드로 변경 
    const { id } = useParams();
    const company = COMPANIES.find(company => company.id === id);
@@ -13,7 +14,7 @@ export default function CompanyDetailInfo() {
   return (
     <div className="company-detail-info">
       <div className="company-detail-header-title">
-        <img src={company.image} alt={company.name} />
+        {/* <img src={company.imageUrl} alt={company.name} /> */}
         <div className="company-detail-header-title-text">
           <h1>{company.name}</h1>
           <p>{company.category}</p>

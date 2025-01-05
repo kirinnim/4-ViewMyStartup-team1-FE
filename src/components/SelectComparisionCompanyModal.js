@@ -22,7 +22,7 @@ export default function SelectComparisionCompanyModal({
 }) {
   const [selectedCompanies, setSelectedCompanies] = useState(initialCompanies);
   const [searchCompanies, setSearchCompanies] = useState([]);
-  const [searchCount, setSearchCount] = useState();
+  const [searchCount, setSearchCount] = useState(0);
   const [loadingError, setLoadingError] = useState(null);
   const [inputValue, setInputValue] = useState('');
   const [isShowAlert, setIsShowAlert] = useState(false);
@@ -31,13 +31,17 @@ export default function SelectComparisionCompanyModal({
   const [searchText, setSearchText] = useState('');
   const [page, setPage] = useState(1);
 
-  const modalClassName = `modal-comparision-content ${isShowAlert ? 'hide' : ''}`;
-  const btnSelectDoneClass = `primary-round-button ${selectedCompanies.length > 0 ? '' : 'disable'}`;
+  const modalClassName = `modal-comparision-content ${
+    isShowAlert ? 'hide' : ''
+  }`;
+  const btnSelectDoneClass = `primary-round-button ${
+    selectedCompanies.length > 0 ? '' : 'disable'
+  }`;
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setInputValue(e.target.value);
   };
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setInputValue(inputValue);
     setSearchText(inputValue);
@@ -71,9 +75,9 @@ export default function SelectComparisionCompanyModal({
         setIsShowAlert(true);
         return;
       }
-      setSelectedCompanies(prevValues => [...prevValues, company]);
+      setSelectedCompanies((prevValues) => [...prevValues, company]);
     } else if (btnStatus === 'selectCancel') {
-      setSelectedCompanies(prevValues => {
+      setSelectedCompanies((prevValues) => {
         return [...prevValues.slice(0, index), ...prevValues.slice(index + 1)];
       });
     } else {
@@ -93,7 +97,7 @@ export default function SelectComparisionCompanyModal({
     setIsShowAlert(false);
   };
 
-  const handleLoadSearchCompanies = async options => {
+  const handleLoadSearchCompanies = async (options) => {
     let result;
     try {
       setLoadingError(null);
@@ -181,7 +185,11 @@ export default function SelectComparisionCompanyModal({
           <div className="search-result-companies-title">{`검색 결과 (${searchCount})`}</div>
           <div className="search-result-companies-list">
             {searchCompanies.map((company, index) => {
-              const btnStatus = `${selectedCompanies.some(el => el.id === company.id) ? 'selectDone' : 'select'}`;
+              const btnStatus = `${
+                selectedCompanies.some((el) => el.id === company.id)
+                  ? 'selectDone'
+                  : 'select'
+              }`;
               return (
                 <CompanyWidgetHor
                   key={company.id}
@@ -195,12 +203,14 @@ export default function SelectComparisionCompanyModal({
             })}
           </div>
         </div>
-        <Pagination
-          currentPage={page}
-          onPageChange={setPage}
-          totalItems={searchCount}
-          itemsPerPage={ITEMSPERPAGE_COUNT}
-        />
+        {searchCount !== 0 && (
+          <Pagination
+            currentPage={parseInt(page)}
+            onPageChange={setPage}
+            totalItems={parseInt(searchCount)}
+            itemsPerPage={ITEMSPERPAGE_COUNT}
+          />
+        )}
         <div className="button-wrapper done">
           <div className="primary-round-button-outline" onClick={onCloseClick}>
             취소

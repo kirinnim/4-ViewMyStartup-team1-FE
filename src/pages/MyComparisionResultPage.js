@@ -26,20 +26,20 @@ function MyComparisionResultPage() {
   const [order, setOrder] = useState('highestSales');
   const [loadingError, setLoadingError] = useState(null);
 
-  const handleLoadCompanyRank = async orderBy => {
+  const handleLoadCompanyRank = async (orderBy) => {
     let rankCompanies;
     try {
       setLoadingError(null);
       rankCompanies = await getCompanyRank_jhm(
         location.state.myCompany.id,
-        orderBy,
+        orderBy
       );
     } catch (error) {
       setLoadingError(error);
     }
     setRankCompareCompanies(rankCompanies);
   };
-  const handleDropdownChange = value => {
+  const handleDropdownChange = (value) => {
     setOrder(dropdownOptionsMap[value]);
   };
 
