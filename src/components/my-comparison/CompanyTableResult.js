@@ -107,26 +107,28 @@ export default function CompanyTableResult({ companies, myCompanyId }) {
           onChange={handleDropdownChange}
         />
       </div>
-      <div className="company-table-header">
-        <div className="header-item1">기업 명</div>
-        <div className="header-item2">기업 소개</div>
-        <div className="header-item3">카테고리</div>
-        <div className="header-item4">누적 투자 금액</div>
-        <div className="header-item5">매출액</div>
-        <div className="header-item6">고용 인원</div>
-      </div>
+      <div className="company-table-contents-wrapper">
+        <div className="company-table-header">
+          <div className="header-item1">기업 명</div>
+          <div className="header-item2">기업 소개</div>
+          <div className="header-item3">카테고리</div>
+          <div className="header-item4">누적 투자 금액</div>
+          <div className="header-item5">매출액</div>
+          <div className="header-item6">고용 인원</div>
+        </div>
 
-      {sortedCompanies.map((company, index) => {
-        return (
-          <CompanyTableBody
-            key={company.id}
-            company={company}
-            index={index}
-            isLast={companies.length === index + 1}
-            isMyCompany={company.id === myCompanyId}
-          />
-        );
-      })}
+        {sortedCompanies.map((company, index) => {
+          return (
+            <CompanyTableBody
+              key={company.id}
+              company={company}
+              index={index}
+              isLast={companies.length === index + 1}
+              isMyCompany={company.id === myCompanyId}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

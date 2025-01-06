@@ -6,7 +6,6 @@ import './CompanyListPage.css';
 import TitleAndSearch from '../components/TitleAndSearch';
 import StartupTableHead from '../components/StartupTableHead';
 import CompanyList from '../components/CompanyList';
-import React from 'react';
 
 function CompanyListPage() {
   return (

@@ -1,76 +1,99 @@
-import { useParams } from 'react-router-dom';
-import { INVESTMENTS, COMPANIES, USERS } from '../db/companyMock';
 import './CompanyInvestmentSection.css';
+import getCompanyInvestments from '../apis/getCompanyInvestments';
+import { useEffect, useState } from 'react';
+import Pagination from './Pagination';
 
-export default function CompanyInvestmentSection({ companyId }) {
-  //그리드 구현용 임시 db 사용.. 도저히...
+const formatToKoreanBillion = (amount) => {
+  return (Math.round((amount / 100000000) * 10) / 10).toLocaleString();
+};
 
-  const mockInvestments = [
-    {
-      investorName: '김투자',
-      rank: 1,
-      amount: 500200000,
-      comment: '성장 가능성이 높아 보입니다.',
-    },
-    {
-      investorName: '이사장',
-      rank: 2,
-      amount: 3000000300,
-      comment: '좋은 비즈니스 모델입니다.',
-    },
-    {
-      investorName: '박대표',
-      rank: 3,
-      amount: 20000000200,
-      comment: '훌륭한 팀과 기술력을 보유했습니다.',
-    },
-    {
-      investorName: '한대표',
-      rank: 4,
-      amount: 2000000300,
-      comment: '훌륭한 팀과 기술력을 보유했습니다.',
-    },
-    {
-      investorName: '왕투자',
-      rank: 5,
-      amount: 2320000000,
-      comment: '훌륭한 팀과 기술력을 보유했습니다.',
-    },
-  ];
+const ITEMSPERPAGE_COUNT = 2;
 
-  const formatToKoreanBillion = amount => {
-    return (amount / 100000000).toLocaleString();
+// 각 행별로 필요한 액션(드롭다운, 수정/삭제)이 있어서 분리함
+function TableRowCompany({ investment }) {
+  const [isShowDropdown, setIsShowDropdwon] = useState(false);
+
+  const dropdownClassName = `dropdown-menu ${isShowDropdown ? '' : 'hidden'}`;
+  const handleMenuClick = () => {
+    setIsShowDropdwon(!isShowDropdown);
   };
 
   return (
-    <div className="company-investment-section">
-      <h1 className="table-title">View My Startup에서 받은 투자</h1>
-      <div className="divider" />
-      <p className="investment-sum">총 200억원</p>
-      <table className="data-table">
-        <thead>
-          <tr>
-            <th>투자자 이름</th>
-            <th>순위</th>
-            <th>투자금액</th>
-            <th>투자 코멘트</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {mockInvestments.map((inv, index) => (
-            <tr key={index}>
-              <td>{inv.investorName}</td>
-              <td>{inv.rank}위</td>
-              <td>{formatToKoreanBillion(inv.amount)}억</td>
-              <td>{inv.comment}</td>
-              <td>
-                <button className="more-button">⋮</button>
-              </td>
+    <tr key={investment.id}>
+      <td>{investment.name}</td>
+      <td>{investment.rank}위</td>
+      <td>{formatToKoreanBillion(investment.amount)}억</td>
+      <td>{investment.comment}</td>
+      <td>
+        <div className="more-button-wrapper">
+          <button className="more-button" onClick={handleMenuClick}>
+            ⋮
+          </button>
+          <div className={dropdownClassName}>
+            <div>수정하기</div>
+            <div>삭제하기</div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  );
+}
+
+export default function CompanyInvestmentSection({ companyId }) {
+  const [investments, setInvestments] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+  const [totalInvestAmount, setTotalInvestAmount] = useState(0);
+
+  // companyId를 이용해 db에서 투자 정보 불러오기
+  // 에러 처리는 하지 않았습니다. 나중에 주영님이 적용해 보세요~ :)
+  const handleLoad = async (options) => {
+    const result = await getCompanyInvestments(companyId, options);
+    setInvestments(result.companyInvestments);
+    setTotalCount(result.totalCount);
+    setTotalInvestAmount(result.totalInvestAmount);
+  };
+
+  useEffect(() => {
+    handleLoad({
+      skip: (page - 1) * ITEMSPERPAGE_COUNT,
+      limit: ITEMSPERPAGE_COUNT,
+    });
+  }, [page]);
+
+  return (
+    <>
+      <div className="company-investment-section">
+        <h1 className="table-title">View My Startup에서 받은 투자</h1>
+        <div className="divider" />
+        <p className="investment-sum">
+          {`총 ${formatToKoreanBillion(totalInvestAmount)}억 원`}
+        </p>
+        <table className="data-table">
+          <thead>
+            <tr>
+              <th>투자자 이름</th>
+              <th>순위</th>
+              <th>투자금액</th>
+              <th>투자 코멘트</th>
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {investments.map((investment, index) => (
+              <TableRowCompany key={investment.id} investment={investment} />
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {totalCount !== 0 && (
+        <Pagination
+          currentPage={page}
+          onPageChange={setPage}
+          totalItems={totalCount}
+          itemsPerPage={ITEMSPERPAGE_COUNT}
+        />
+      )}
+    </>
   );
 }

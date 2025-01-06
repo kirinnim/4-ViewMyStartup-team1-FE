@@ -3,7 +3,7 @@
 import Container from '../components/Container';
 import Header from '../components/my-comparison/HearderJHM';
 import './MyComparisionPage.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import SelectMyCompanyModal from '../components/my-comparison/SelectMyCompanyModal';
 import SelectComparisionCompanyModal from '../components/my-comparison/SelectComparisionCompanyModal';
@@ -12,7 +12,6 @@ import { updateCompany_jhm } from '../apis/updateCompany_jhm';
 import MyCompanyBox from '../components/my-comparison/MyCompanyBox';
 import CompareCompanyBox from '../components/my-comparison/CompareCompanyBox';
 import { motion } from 'framer-motion';
-import useDeviceSize from '../hooks/useDeviceSize';
 import React from 'react';
 
 // 현재 사용자 지정
@@ -29,7 +28,6 @@ function MyComparisionPage() {
   const modalComparisionBackground = useRef();
   const navigate = useNavigate();
   const isAbleToCompare = myCompany && compareCompanies.length > 0;
-  const { isMobile, isTablet } = useDeviceSize();
 
   const btnCompareCompanyClass = `primary-round-button ${
     isAbleToCompare ? '' : 'disable'
@@ -96,6 +94,7 @@ function MyComparisionPage() {
         });
       } catch (error) {
         setUpdateUsrError(error);
+        console.log(updateUsrError);
       }
     }
     // 기업의 '나의 기업 선택횟수'를 업데이트(1만큼 증가)
@@ -106,6 +105,7 @@ function MyComparisionPage() {
       });
     } catch (error) {
       setUpdateCompanyError(error);
+      console.log(updateCompanyError);
     }
     setMyCompany(selectedCompany);
     setPopMyModal(false);
@@ -187,14 +187,14 @@ function MyComparisionPage() {
             />
           )}
           <div className="button-wrapper">
-            <motion.div
+            <motion.button
               initial={{ scale: 1 }}
               whileTap={{ scale: isAbleToCompare ? 0.9 : 1 }}
               className={`${btnCompareCompanyClass} "last"`}
               onClick={handleDoCompareClick}
             >
               기업 비교하기
-            </motion.div>
+            </motion.button>
           </div>
         </Container>
       </div>

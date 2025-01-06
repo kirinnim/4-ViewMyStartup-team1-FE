@@ -3,6 +3,7 @@
 import { COMPANIES } from '../db/companyMock';
 import { useParams } from 'react-router-dom';
 import './CompanyDetailInfo.css';
+import convertNumTo100M from '../utils/convertNumTo100M';
 
 export default function CompanyDetailInfo({ company }) {
   console.log(company);
@@ -26,16 +27,18 @@ export default function CompanyDetailInfo({ company }) {
           <div className="metric-input">
             <span className="metric-title">누적투자금액</span>
             <span className="metric-value">
-              {company.totalInvestment} 억 원
+              {convertNumTo100M(company.actualInvest)} 억 원
             </span>
           </div>
           <div className="metric-input">
             <span className="metric-title">매출액</span>
-            <span className="metric-value">{company.revenue} 억 원</span>
+            <span className="metric-value">
+              {convertNumTo100M(company.revenue)} 억 원
+            </span>
           </div>
           <div className="metric-input">
             <span className="metric-title">고용인원</span>
-            <span className="metric-value">{company.employees} 명</span>
+            <span className="metric-value">{company.employeesCount} 명</span>
           </div>
         </div>
 

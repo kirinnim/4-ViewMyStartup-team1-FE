@@ -1,6 +1,6 @@
 // 조형민
 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import icPlus from '../../assets/images/ic_plus.png';
 import icRestart from '../../assets/images/ic_restart.png';
 import CompanyWidget from './CompanyWidget';
@@ -35,7 +35,7 @@ export default function MyCompanyBox({
       <div className="my-company-title">
         {headerTxt}
         {(myCompany || compareCompanies.length !== 0) && (
-          <motion.div
+          <motion.button
             initial={{ scale: 1 }}
             whileTap={{ scale: 0.9 }}
             className={btnClassName}
@@ -43,7 +43,7 @@ export default function MyCompanyBox({
           >
             {isResult || <img src={icRestart} alt="초기화" width="24px" />}
             {btnTxt}
-          </motion.div>
+          </motion.button>
         )}
       </div>
       <div className={boxClassName}>
@@ -54,7 +54,12 @@ export default function MyCompanyBox({
             </div>
           )}
           {myCompany ? (
-            <CompanyWidget company={myCompany} />
+            <Link
+              to={`/companies/${myCompany.id}`}
+              state={{ company: myCompany }}
+            >
+              <CompanyWidget company={myCompany} />
+            </Link>
           ) : (
             <div className="add-button-widget" onClick={onAddMyClick}>
               <div className="plus-icon">
