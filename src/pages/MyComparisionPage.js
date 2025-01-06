@@ -85,7 +85,7 @@ function MyComparisionPage() {
   const handleSelectClick = async (
     selectedCompany,
     newSelections,
-    noUpdateUser,
+    noUpdateUser
   ) => {
     if (!noUpdateUser) {
       // 사용자의 '최근 선택 기업' 목록을 업데이트

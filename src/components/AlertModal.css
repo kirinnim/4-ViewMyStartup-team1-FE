@@ -11,14 +11,13 @@
   padding: 2.4rem;
   border-radius: 1.6rem;
   background-color: #212121;
-}
-.modal-content-alert {
   font-size: 1.5rem;
   font-weight: 400;
   color: #ffffff;
   text-align: center;
 }
 .modal-close-icon-wrapper > img {
+  width: 3.2rem;
   cursor: pointer;
 }
 .modal-close-icon-wrapper > img:hover {
@@ -30,4 +29,16 @@
 
 .modal-content-alert.hide {
   display: none;
+}
+
+@media (max-width: 743px) {
+  .modal-content-alert {
+    width: calc(100% - 3.2rem);
+    max-width: 49.6rem;
+    padding: 1.6rem;
+    font-size: 1.4rem;
+  }
+  .modal-close-icon-wrapper > img {
+    width: 2.4rem;
+  }
 }

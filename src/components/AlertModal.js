@@ -8,11 +8,11 @@ export default function AlertModal({ text, isShow = false, onClick }) {
   return (
     <div className={className}>
       <div className="modal-close-icon-wrapper">
-        <img src={icDelete} alt="창닫기" width="32px" onClick={onClick} />
+        <img src={icDelete} alt="창닫기" onClick={onClick} />
       </div>
       <div className="modal-content-alert-text">{text}</div>
       <div className="button-wrapper done">
-        <div className="primary-round-button" onClick={onClick}>
+        <div className="primary-round-button-modal" onClick={onClick}>
           확인
         </div>
       </div>
