@@ -1,3 +1,5 @@
+//구은모
+
 export const startups = [
   {
     id: '38dd89a8-ade5-44c5-b64b-9ce8b2972def',

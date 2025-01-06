@@ -1,3 +1,5 @@
+/*구은모*/
+
 .title {
   margin: 3rcap;
   font-size: 1.5rem;
@@ -5,13 +7,25 @@
   display: flex;
   align-items: center;
   flex-direction: row;
+  justify-content: space-between;
 }
 .searchAndSort {
+  width: 632px;
   display: flex;
   align-items: center;
   flex-direction: row;
+  justify-content: space-between;
 }
-
+.search {
+  width: 448px;
+  height: 48px;
+  border: 1px solid #747474;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+}
 .Sort {
   color: white;
+  width: 168px;
 }
