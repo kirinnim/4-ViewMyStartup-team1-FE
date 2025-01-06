@@ -2,6 +2,9 @@
 .company-table-rank {
   margin-bottom: 4rem;
 }
+.company-table-rank-contents-wrapper {
+  overflow-x: auto;
+}
 .company-table-rank-title {
   height: 4rem;
   font-size: 2rem;

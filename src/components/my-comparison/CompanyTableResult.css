@@ -1,4 +1,10 @@
 /* 조형민 */
+/* .company-table {
+  overflow-x: auto;
+} */
+.company-table-contents-wrapper {
+  overflow-x: auto;
+}
 .company-table-title-wrapper {
   display: flex;
 }

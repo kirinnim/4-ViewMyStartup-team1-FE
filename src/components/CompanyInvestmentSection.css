@@ -83,3 +83,17 @@
   padding: 0.5rem;
   color: #eee;
 }
+.more-button-wrapper {
+  position: relative;
+}
+.dropdown-menu {
+  right: 0;
+  position: absolute;
+  width: 14.4rem;
+  height: 8rem;
+  z-index: 10;
+  float: right;
+}
+.dropdown-menu.hidden {
+  display: none;
+}

@@ -76,26 +76,28 @@ export default function CompanyTableRank({ companies, myCompanyId, onChange }) {
           onChange={handleDropdownChange}
         />{' '}
       </div>
-      <div className="company-table-rank-header">
-        <div className="header-rank-item0">순위</div>
-        <div className="header-rank-item1">기업 명</div>
-        <div className="header-rank-item2">기업 소개</div>
-        <div className="header-rank-item3">카테고리</div>
-        <div className="header-rank-item4">누적 투자 금액</div>
-        <div className="header-rank-item5">매출액</div>
-        <div className="header-rank-item6">고용 인원</div>
+      <div className="company-table-rank-contents-wrapper">
+        <div className="company-table-rank-header">
+          <div className="header-rank-item0">순위</div>
+          <div className="header-rank-item1">기업 명</div>
+          <div className="header-rank-item2">기업 소개</div>
+          <div className="header-rank-item3">카테고리</div>
+          <div className="header-rank-item4">누적 투자 금액</div>
+          <div className="header-rank-item5">매출액</div>
+          <div className="header-rank-item6">고용 인원</div>
+        </div>
+        {companies.map((company, index) => {
+          return (
+            <CompanyTableBody
+              key={company.id}
+              company={company}
+              index={index}
+              isLast={companies.length === index + 1}
+              isMyCompany={company.id === myCompanyId}
+            />
+          );
+        })}
       </div>
-      {companies.map((company, index) => {
-        return (
-          <CompanyTableBody
-            key={company.id}
-            company={company}
-            index={index}
-            isLast={companies.length === index + 1}
-            isMyCompany={company.id === myCompanyId}
-          />
-        );
-      })}
     </div>
   );
 }
