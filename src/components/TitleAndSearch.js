@@ -1,29 +1,59 @@
+//구은모
+
 import { useState } from 'react';
 import { startups } from '../db/mockKem';
 import './TitleAndSaerch.css';
 
 function TitleAndSearch() {
-  const [order, setOder] = useState('revenue');
-  const sortedCompany = startups.sort((a, b) => b[order] - a[order]);
+  const [order, setOrder] = useState('revenue');
+  const [keyword, setKeyword] = useState('');
 
-  const handleRevenueClick = () => setOder('revenue');
+  // 스타트업을 정렬합니다.
+  const sortedCompanies = [...startups].sort((a, b) => b[order] - a[order]);
 
-  const handleBeststClick = () => setOder('revenue');
+  // 키워드에 따라 필터링합니다.
+  const filteredCompanies = sortedCompanies.filter((company) =>
+    company.name.toLowerCase().includes(keyword.toLowerCase()),
+  );
+
+  const handleRevenueClick = () => setOrder('revenue');
+  const handleEmployeesCountClick = () => setOrder('employeesCount');
+
+  const handleKeywordChange = (event) => {
+    setKeyword(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // 현재는 submit을 통해 검색을 트리거하지만, 실시간 검색을 원한다면 onChange에서 처리할 수 있습니다.
+  };
 
   return (
     <>
       <div className="title">
         <h1>전체 스타트업 목록</h1>
-        <div className="searchAndSort">
-          <div className="search">
-            <input></input>
-          </div>
-          <div className="sort">
-            <button onClick={handleRevenueClick}>매출액 높은순</button>
-            <button onClick={handleBeststClick}>고용인원 순</button>
-          </div>
+
+        <div className="search">
+          <form onSubmit={handleSubmit}>
+            <input
+              name="keyword"
+              value={keyword}
+              onChange={handleKeywordChange}
+              placeholder="검색어를 입력해주세요"
+            />
+          </form>
         </div>
+
       </div>
+      {/* <div className="companyList">
+          {filteredCompanies.map(company => (
+            <div key={company.id} className="companyItem">
+              <h2>{company.name}</h2>
+              <p>매출액: {company.revenue}</p>
+              <p>고용인원: {company.employeesCount}</p>
+            </div>
+          ))}
+        </div> */}
     </>
   );
 }
