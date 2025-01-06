@@ -8,33 +8,54 @@ import { useEffect, useState } from 'react';
 import Pagination from '../components/Pagination';
 import InvestmentList from '../components/InvestmentList';
 import { fetchInvestments } from '../apis/getCompanies_ksh';
-// import CompanyInvestmentModal from '../components/CompanyInvestmentModal';
+import { postInvestment } from '../apis/postInvestment_ksh';
+import CompanyInvestmentModal from '../components/CompanyInvestmentModal';
+import InvestmentDeleteModal from '../components/InvestmentDeleteModal';
 
 function InvestmentStatusPage() {
-  // const [modalVisible, setModalVisible] = useState(false);
-  // const [selectedCompany, setSelectedCompany] = useState({
-  //   name: '',
-  //   category: '',
-  //   info: '',
-  // });
-  // const [investment, setInvestment] = useState({
-  //   investorName: '',
-  //   amount: 0,
-  //   comment: '',
-  //   password: '',
-  //   passwordConfirm: '',
-  // });
+  // 모달용 States
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedCompany, setSelectedCompany] = useState({
+    name: '',
+    category: '',
+    info: '',
+  });
+  const [investment, setInvestment] = useState({
+    investorName: '',
+    amount: 0,
+    comment: '',
+    password: '',
+    passwordConfirm: '',
+  });
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
 
-  // const openModal = () => setModalVisible(true);
-  // const closeModal = () => setModalVisible(false);
+  const openModal = () => {
+    setModalVisible(true);
+  }
+  const closeModal = () => setModalVisible(false);
 
-  // const updateInvestment = (key, value) => {
-  //   setInvestment({
-  //     ...investment,
-  //     [key]: value,
-  //   });
-  // };
+  const openDeleteModal = () => {
+    setDeleteModalVisible(true);
+  };
+  const closeDeleteModal = () => {
+    setDeleteModalVisible(false);
+  };
+
+  const updateInvestment = (key, value) => {
+    setInvestment({
+      ...investment,
+      [key]: value,
+    });
+  };
+
+  useEffect(() => {
+    console.log('Modal visibility changed:', modalVisible);
+  }, [modalVisible]);
   
+
+  // postInvestment 
+  
+  // 모달 
 
   const [selectedOption, setSelectedOption] = useState(
     'View My Startup 투자 금액 높은순',
@@ -101,16 +122,38 @@ function InvestmentStatusPage() {
     <div className="investment-status-page">
       <Header />
       <Container>
-        {/* <button className="investment-button" onClick={openModal}>모달 열기</button>
-        { modalVisible && (<CompanyInvestmentModal company={selectedCompany} investment={investment} onClose={closeModal} onUpdateInvestment={updateInvestment} />) } */}
-        <div className="investment-status">
-          <p>투자 현황</p>
-          <Dropdown
-            options={sortOptions}
-            selectedValue={selectedOption}
-            onChange={handleDropdownChange}
-          />
-        </div>
+          <button className="delete-button" onClick={openDeleteModal}>삭제 모달 열기</button>
+          { deleteModalVisible && <div
+    className={`ksh-investment-delete-modal-overlay ${deleteModalVisible ? 'active' : ''}`}
+    onClick={closeDeleteModal}
+  >
+      <InvestmentDeleteModal
+        investment={investment}
+        password={investment.password}
+        onDelete={closeDeleteModal}
+      />
+        </div> }
+    
+          <button className="investment-button" onClick={openModal}>모달 열기</button>
+          { modalVisible && <div
+    className={`ksh-investment-modal-overlay ${modalVisible ? 'active' : ''}`}
+    onClick={closeModal}
+  >
+      <CompanyInvestmentModal
+        company={selectedCompany}
+        investment={investment}
+        onClose={closeModal}
+        onUpdateInvestment={updateInvestment}
+      />
+        </div> }
+          <div className="investment-status">
+            <p>투자 현황</p>
+            <Dropdown
+              options={sortOptions}
+              selectedValue={selectedOption}
+              onChange={handleDropdownChange}
+            />
+          </div>
         <div className="investment-status-table">
           <div className="investment-status-rank">순위</div>
           <div className="investment-status-company-name">기업명</div>
