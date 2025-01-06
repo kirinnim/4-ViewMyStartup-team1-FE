@@ -1,7 +1,7 @@
 .company-investment-section {
   width: 100%;
   max-width: 120rem;
-  margin-top: 2rem;
+  margin: 0 auto;
   border-radius: 0.5rem;
   overflow: hidden;
 }
@@ -17,62 +17,69 @@
 }
 .data-table {
   width: 100%;
-  border-collapse: collapse;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
-.data-table thead tr {
+
+.table-header {
+  display: flex;
   border-bottom: 2rem solid #131313;
 }
-.data-table th {
-  padding: 1.5rem;
-  text-align: left;
+
+.table-header .table-cell {
   background-color: #2e2e2e;
   color: #ffffff;
   font-weight: bold;
-  border-bottom: 1px solid #ddd;
   text-align: center;
+  padding: 1.5rem;
 }
-.data-table tbody tr {
+
+.table-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-row {
+  display: flex;
   border-bottom: 1px solid #4b4b4b;
 }
 
-.data-table tbody tr:last-child {
+.table-row:last-child {
   border-bottom: none;
 }
 
-.data-table td {
+.table-row .table-cell {
   background-color: #212121;
   padding: 1.5rem;
   color: #d8d8d8;
 }
-.data-table tr:hover {
-  background-color: #eee;
+.table-cell {
+  position: static;
+  display: flex;
+  align-items: center;
 }
-.data-table th:nth-child(1),
-.data-table td:nth-child(1) {
-  width: 8%; /* 투자자 이름 */
+.table-cell:nth-child(1) {
+  width: 10%;
   text-align: center;
 }
 
-.data-table th:nth-child(2),
-.data-table td:nth-child(2) {
-  width: 8%; /* 순위 */
+.table-cell:nth-child(2) {
+  width: 8%;
   text-align: center;
 }
 
-.data-table th:nth-child(3),
-.data-table td:nth-child(3) {
-  width: 8%; /* 투자금액 */
+.table-cell:nth-child(3) {
+  width: 8%;
   text-align: center;
 }
 
-.data-table th:nth-child(4),
-.data-table td:nth-child(4) {
-  width: 70%; /* 투자 코멘트 */
+.table-cell:nth-child(4) {
+  width: 68%;
 }
 
-.data-table th:nth-child(5),
-.data-table td:nth-child(5) {
-  width: 6%; /* ... */
+.table-cell:nth-child(5) {
+  width: 6%;
   text-align: center;
 }
 .more-button {
@@ -86,14 +93,106 @@
 .more-button-wrapper {
   position: relative;
 }
+
 .dropdown-menu {
-  right: 0;
   position: absolute;
-  width: 14.4rem;
-  height: 8rem;
-  z-index: 10;
-  float: right;
+  top: 0;
+  right: 0;
+  color: #ffffff;
+  background: #131313;
+  border: 1px solid #747474;
+  border-radius: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  max-width: 10rem;
+  text-align: center;
 }
-.dropdown-menu.hidden {
+
+.dropdown-menu div {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.dropdown-edit-btn {
+  border-bottom: 1px solid #747474;
+}
+.dropdown-edit-btn:hover {
+  background-color: #f5f5f5;
+  border-radius: 1rem 1rem 0 0;
+  color: #131313;
+}
+.dropdown-delete-btn:hover {
+  background-color: #f5f5f5;
+  border-radius: 0 0 1rem 1rem;
+  color: #131313;
+}
+
+.hidden {
   display: none;
+}
+/* 태블릿 버전 (768px ~ 1024px) */
+@media screen and (max-width: 1024px) {
+  .company-investment-section {
+    padding: 0 2rem;
+  }
+
+  .table-title {
+    font-size: 2rem;
+  }
+
+  .investment-sum {
+    font-size: 1.8rem;
+  }
+
+  .table-header .table-cell,
+  .table-row .table-cell {
+    padding: 1.2rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* 모바일 버전 (768px 이하) */
+@media screen and (max-width: 768px) {
+  .company-investment-section {
+    padding: 0 1rem;
+  }
+  .data-table {
+    min-width: 375px;
+  }
+  .table-title {
+    font-size: 1.8rem;
+  }
+
+  .investment-sum {
+    font-size: 1.5rem;
+  }
+
+  .table-header .table-cell,
+  .table-row .table-cell {
+    padding: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .table-cell:nth-child(1) {
+    width: 15%;
+  }
+
+  .table-cell:nth-child(2) {
+    width: 15%;
+  }
+
+  .table-cell:nth-child(3) {
+    width: 15%;
+  }
+
+  .table-cell:nth-child(4) {
+    width: 45%;
+  }
+
+  .table-cell:nth-child(5) {
+    width: 10%;
+  }
+
+  .more-button {
+    font-size: 1.2rem;
+  }
 }

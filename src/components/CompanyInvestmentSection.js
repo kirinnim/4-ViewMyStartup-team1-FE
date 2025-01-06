@@ -7,35 +7,53 @@ const formatToKoreanBillion = (amount) => {
   return (Math.round((amount / 100000000) * 10) / 10).toLocaleString();
 };
 
-const ITEMSPERPAGE_COUNT = 2;
+const ITEMSPERPAGE_COUNT = 5;
 
 // 각 행별로 필요한 액션(드롭다운, 수정/삭제)이 있어서 분리함
 function TableRowCompany({ investment }) {
   const [isShowDropdown, setIsShowDropdwon] = useState(false);
+  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
 
   const dropdownClassName = `dropdown-menu ${isShowDropdown ? '' : 'hidden'}`;
-  const handleMenuClick = () => {
+
+  const handleMenuClick = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setDropdownPosition({
+      top: rect.bottom + window.scrollY,
+      left: rect.left + window.scrollX - 80,
+    });
     setIsShowDropdwon(!isShowDropdown);
   };
 
   return (
-    <tr key={investment.id}>
-      <td>{investment.name}</td>
-      <td>{investment.rank}위</td>
-      <td>{formatToKoreanBillion(investment.amount)}억</td>
-      <td>{investment.comment}</td>
-      <td>
-        <div className="more-button-wrapper">
-          <button className="more-button" onClick={handleMenuClick}>
+    <>
+      <div className='table-row'>
+        <div className='table-cell'>{investment.name}</div>
+        <div className='table-cell'>{investment.rank}위</div>
+        <div className='table-cell'>
+          {formatToKoreanBillion(investment.amount)}억
+        </div>
+        <div className='table-cell'>{investment.comment}</div>
+        <div className='table-cell'>
+          <button className='more-button' onClick={handleMenuClick}>
             ⋮
           </button>
-          <div className={dropdownClassName}>
-            <div>수정하기</div>
-            <div>삭제하기</div>
-          </div>
         </div>
-      </td>
-    </tr>
+      </div>
+      {isShowDropdown && (
+        <div
+          className={dropdownClassName}
+          style={{
+            position: 'fixed',
+            top: dropdownPosition.top,
+            left: dropdownPosition.left,
+          }}
+        >
+          <div className='dropdown-edit-btn'>수정하기</div>
+          <div className='dropdown-delete-btn'>삭제하기</div>
+        </div>
+      )}
+    </>
   );
 }
 
@@ -63,28 +81,26 @@ export default function CompanyInvestmentSection({ companyId }) {
 
   return (
     <>
-      <div className="company-investment-section">
-        <h1 className="table-title">View My Startup에서 받은 투자</h1>
-        <div className="divider" />
-        <p className="investment-sum">
+      <div className='company-investment-section'>
+        <h1 className='table-title'>View My Startup에서 받은 투자</h1>
+        <div className='divider' />
+        <p className='investment-sum'>
           {`총 ${formatToKoreanBillion(totalInvestAmount)}억 원`}
         </p>
-        <table className="data-table">
-          <thead>
-            <tr>
-              <th>투자자 이름</th>
-              <th>순위</th>
-              <th>투자금액</th>
-              <th>투자 코멘트</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {investments.map((investment, index) => (
+        <div className='data-table'>
+          <div className='table-header'>
+            <div className='table-cell'>투자자 이름</div>
+            <div className='table-cell'>순위</div>
+            <div className='table-cell'>투자금액</div>
+            <div className='table-cell'>투자 코멘트</div>
+            <div className='table-cell'></div>
+          </div>
+          <div className='table-body'>
+            {investments.map((investment) => (
               <TableRowCompany key={investment.id} investment={investment} />
             ))}
-          </tbody>
-        </table>
+          </div>
+        </div>
       </div>
       {totalCount !== 0 && (
         <Pagination
