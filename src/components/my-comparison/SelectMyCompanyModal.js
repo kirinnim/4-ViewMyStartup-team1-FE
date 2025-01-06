@@ -1,19 +1,21 @@
 // 조형민
 
-import { useEffect, useRef, useState } from 'react';
-import icDelete from '../assets/images/ic_delete.png';
-import icDeleteCircleSmall from '../assets/images/ic_delete_circle_small.png';
-import icSearch from '../assets/images/ic_search.png';
+import React, { useEffect, useRef, useState } from 'react';
+import icDelete from '../../assets/images/ic_delete.png';
+import icDeleteCircleSmall from '../../assets/images/ic_delete_circle_small.png';
+import icSearch from '../../assets/images/ic_search.png';
 import './SelectMyCompanyModal.css';
-import CompanyWidgetHor from './CompanytWidgetHor';
-import { getLatestSelections_jhm } from '../apis/getLatestSelections_jhm.js';
-import { getCompaniesModal_jhm } from '../apis/getComapniesModal_jhm.js';
-import AlertModal from './AlertModal';
-import Pagination from './Pagination.js';
+import CompanyWidgetHor from './CompanytWidgetHor.js';
+import { getLatestSelections_jhm } from '../../apis/getLatestSelections_jhm.js';
+import { getCompaniesModal_jhm } from '../../apis/getComapniesModal_jhm.js';
+import AlertModal from '../AlertModal.js';
+import Pagination from '../Pagination.js';
 
-// 현재 사용자 지정
+// 현재 사용자 id 지정
 const INITIAL_USER_ID = 'fca6ef85-02ba-4868-a7b7-4f49ed16e881';
-const ITEMSPERPAGE_COUNT = 3;
+
+// 한 페이지에 표시되는 company의 개수 설정(페이지네이션에 사용)
+const ITEMSPERPAGE_COUNT = 5;
 
 export default function SelectMyCompanyModal({
   onModalClick,
@@ -25,7 +27,7 @@ export default function SelectMyCompanyModal({
 }) {
   const [latestSelections, setLatestSelections] = useState([]);
   const [searchCompanies, setSearchCompanies] = useState([]);
-  const [searchCount, setSearchCount] = useState();
+  const [searchCount, setSearchCount] = useState(0);
   const [selectionLoadingError, setSelectionLoadingError] = useState(null);
   const [searchLoadingError, setSearchLoadingError] = useState(null);
   const [inputValue, setInputValue] = useState('');
@@ -36,9 +38,11 @@ export default function SelectMyCompanyModal({
   const [page, setPage] = useState(1);
 
   const modalClassName = `modal-content ${isShowAlert ? 'hide' : ''}`;
+
   const handleChange = (e) => {
     setInputValue(e.target.value);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setInputValue(e.target.search.value);
@@ -48,6 +52,7 @@ export default function SelectMyCompanyModal({
       limit: ITEMSPERPAGE_COUNT,
     });
   };
+
   const handleSearchClick = () => {
     if (!formRef) return;
     setInputValue(formRef.current.search.value);
@@ -56,10 +61,12 @@ export default function SelectMyCompanyModal({
       limit: ITEMSPERPAGE_COUNT,
     });
   };
+
   const handleClearClick = () => {
     setInputValue('');
     handleLoadSearchCompanies({ searchString: '', limit: ITEMSPERPAGE_COUNT });
   };
+
   // 기업 목록에 있는 선택하기 버튼 클릭
   const handleButtonClick = (selectedCompany) => {
     if (compareCompanies.some((company) => company.id === selectedCompany.id)) {
@@ -69,7 +76,7 @@ export default function SelectMyCompanyModal({
     }
     const selectionsArray = latestSelections.map((value) => value.id);
     const noUpdateUser = selectionsArray.some(
-      (value) => value === selectedCompany.id,
+      (value) => value === selectedCompany.id
     );
     // 최근 선택 항목 5개중에 선택하는 경우에는 user데이터 업데이트는 생략
     if (!noUpdateUser) {
@@ -84,6 +91,7 @@ export default function SelectMyCompanyModal({
     }
     onSelectClick(selectedCompany, selectionsArray, noUpdateUser);
   };
+
   // alert modal의 닫기 또는 확인 버튼 클릭
   const handleCloseModalClick = () => {
     setIsShowAlert(false);
@@ -113,9 +121,11 @@ export default function SelectMyCompanyModal({
     setSearchCount(result.totalCount);
     setSearchCompanies(result.companies);
   };
+
   useEffect(() => {
     handleLoadLatestSelections();
   }, []);
+
   useEffect(() => {
     handleLoadSearchCompanies({
       searchString: inputValue,
@@ -203,12 +213,15 @@ export default function SelectMyCompanyModal({
             })}
           </div>
         </div>
-        <Pagination
-          currentPage={page}
-          onPageChange={setPage}
-          totalItems={searchCount}
-          itemsPerPage={ITEMSPERPAGE_COUNT}
-        />
+        {searchCount !== 0 && (
+          <Pagination
+            currentPage={page}
+            onPageChange={setPage}
+            totalItems={searchCount}
+            itemsPerPage={ITEMSPERPAGE_COUNT}
+            buttonSize={32}
+          />
+        )}
       </div>
       <AlertModal
         text={alertText}

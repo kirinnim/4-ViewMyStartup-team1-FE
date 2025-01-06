@@ -20,3 +20,9 @@
 .ic-minus:hover {
   opacity: 0.5;
 }
+
+@media (max-width: 743px) {
+  .comparision-company-widget {
+    height: 16.3rem;
+  }
+}

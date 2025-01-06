@@ -4,17 +4,31 @@
   position: relative;
   /* min-height로 설정해야 현재 콘텐츠 전체 높이를 사용 */
 }
-.wrapper {
+/* .wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0 2.4rem 16rem;
-}
+} */
 /* .select-comparision-company {
   display: inline-flex;
 } */
 .button-wrapper {
   display: flex;
   justify-content: center;
+}
+.header-underline {
+  width: 100%;
+  height: 0.1rem;
+  /* background-color: white; */
+  position: absolute;
+  top: 6rem;
+  border-bottom: 1px solid #2e2e2e;
+}
+
+@media (max-width: 743px) {
+  .header-underline {
+    top: 5.6rem;
+  }
 }

@@ -8,7 +8,7 @@ const Dropdown = ({ options = [], selectedValue, onChange }) => {
     <select
       className="dropdown-btn"
       value={selectedValue}
-      onChange={e => onChange(e.target.value)}
+      onChange={(e) => onChange(e.target.value)}
     >
       <option className="dropdown-menu" value="" disabled>
         옵션을 선택해 주세요.

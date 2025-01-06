@@ -97,3 +97,27 @@
 .button-wrapper.done > .primary-round-button-outline {
   margin-right: 1.6rem;
 }
+
+@media (max-width: 743px) {
+  .modal-comparision-content {
+    width: calc(100% - 3.2rem);
+    max-width: 49.6rem;
+    padding: 1.6rem;
+  }
+  .modal-comparision-content-header {
+    font-size: 1.6rem;
+  }
+  .latest-selected-companies-title,
+  .search-result-companies-title {
+    font-size: 1.4rem;
+  }
+  #searchName {
+    height: 4rem;
+  }
+  .ic-search {
+    top: 3.2rem;
+  }
+  .button-wrapper.done > .primary-round-button-outline {
+    margin-right: 1rem;
+  }
+}

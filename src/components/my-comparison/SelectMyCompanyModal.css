@@ -14,13 +14,13 @@
   background-color: #000000cc;
 }
 .modal-content {
+  width: 44.8rem;
   max-height: calc(100vh - 2rem);
   overflow-y: auto;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 44.8rem;
   padding: 2.4rem;
   border-radius: 1.6rem;
   background-color: #212121;
@@ -92,4 +92,25 @@
 .latest-selected-companies-list > div:not(:last-child),
 .search-result-companies-list > div:not(:last-child) {
   margin-bottom: 1.2rem;
+}
+
+@media (max-width: 743px) {
+  .modal-content {
+    width: calc(100% - 3.2rem);
+    max-width: 49.6rem;
+    padding: 1.6rem;
+  }
+  .modal-content-header {
+    font-size: 1.6rem;
+  }
+  .latest-selected-companies-title,
+  .search-result-companies-title {
+    font-size: 1.4rem;
+  }
+  #searchName {
+    height: 4rem;
+  }
+  .ic-search {
+    top: 3.2rem;
+  }
 }

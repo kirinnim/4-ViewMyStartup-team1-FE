@@ -57,6 +57,7 @@
   flex-grow: 1.2;
   flex-basis: 0;
   text-align: center;
+  min-width: 9rem;
 }
 .company-table-rank-body,
 .company-table-rank-body-my {
@@ -126,4 +127,18 @@
   -webkit-box-orient: vertical;
   -webkit-box-align: start;
   -webkit-box-pack: end;
+}
+
+@media (max-width: 743px) {
+  .company-table-rank-title {
+    font-size: 1.6rem;
+  }
+  .company-table-rank-header {
+    font-size: 1.3rem;
+  }
+  .company-table-rank-name,
+  .company-table-rank-body,
+  .company-table-rank-body-my {
+    font-size: 1.3rem;
+  }
 }

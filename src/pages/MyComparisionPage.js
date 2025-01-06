@@ -1,16 +1,19 @@
 // 조형민
 
 import Container from '../components/Container';
-import Header from '../components/HearderJHM';
+import Header from '../components/my-comparison/HearderJHM';
 import './MyComparisionPage.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
-import SelectMyCompanyModal from '../components/SelectMyCompanyModal';
-import SelectComparisionCompanyModal from '../components/SelectComparisionCompanyModal';
+import SelectMyCompanyModal from '../components/my-comparison/SelectMyCompanyModal';
+import SelectComparisionCompanyModal from '../components/my-comparison/SelectComparisionCompanyModal';
 import { updateUser_jhm } from '../apis/updateUser_jhm';
 import { updateCompany_jhm } from '../apis/updateCompany_jhm';
-import MyCompanyBox from '../components/MyCompanyBox';
-import CompareCompanyBox from '../components/CompareCompanyBox';
+import MyCompanyBox from '../components/my-comparison/MyCompanyBox';
+import CompareCompanyBox from '../components/my-comparison/CompareCompanyBox';
+import { motion } from 'framer-motion';
+import useDeviceSize from '../hooks/useDeviceSize';
+import React from 'react';
 
 // 현재 사용자 지정
 const INITIAL_USER_ID = 'fca6ef85-02ba-4868-a7b7-4f49ed16e881';
@@ -25,8 +28,12 @@ function MyComparisionPage() {
   const modalBackground = useRef();
   const modalComparisionBackground = useRef();
   const navigate = useNavigate();
+  const isAbleToCompare = myCompany && compareCompanies.length > 0;
+  const { isMobile, isTablet } = useDeviceSize();
 
-  const btnCompareCompanyClass = `primary-round-button ${myCompany && compareCompanies.length > 0 ? '' : 'disable'}`;
+  const btnCompareCompanyClass = `primary-round-button ${
+    isAbleToCompare ? '' : 'disable'
+  }`;
 
   // 모달 팝업 시 스크롤 막기
   if (popComparisionModal || popMyModal) {
@@ -55,13 +62,13 @@ function MyComparisionPage() {
     setCompareCompanies([]);
   };
   // 나의 기업 선택 모달의 빈 공간을 클릭했을 때 닫기
-  const handleModalClick = e => {
+  const handleModalClick = (e) => {
     if (e.target === modalBackground.current) {
       setPopMyModal(false);
     }
   };
   // 비교 기업 선택 모달의 빈 공간을 클릭했을 때 닫기
-  const handleComparisionModalClick = e => {
+  const handleComparisionModalClick = (e) => {
     if (e.target === modalComparisionBackground.current) {
       setPopComparisionModal(false);
     }
@@ -78,7 +85,7 @@ function MyComparisionPage() {
   const handleSelectClick = async (
     selectedCompany,
     newSelections,
-    noUpdateUser,
+    noUpdateUser
   ) => {
     if (!noUpdateUser) {
       // 사용자의 '최근 선택 기업' 목록을 업데이트
@@ -104,7 +111,7 @@ function MyComparisionPage() {
     setPopMyModal(false);
   };
   // 비교 기업 선택 모달에서 '선택완료' 버튼 클릭
-  const handleSaveComparisionClick = selectedCompanies => {
+  const handleSaveComparisionClick = (selectedCompanies) => {
     for (let i = 0; i < selectedCompanies.length; i++) {
       /** 기업의 '비교 기업 선택횟수'를 업데이트
        * - 모달에서 compareSelectionCount를 1씩 증가시킨 상태이므로 받은 값 그대로 업데이트
@@ -123,14 +130,14 @@ function MyComparisionPage() {
     setCompareCompanies(selectedCompanies);
   };
   // 비교 기업 선택 박스 목록에서 특정 기업 삭제 버튼 클릭
-  const handleDeleteComparisionClick = idx => {
-    setCompareCompanies(prevValues => {
+  const handleDeleteComparisionClick = (idx) => {
+    setCompareCompanies((prevValues) => {
       return [...prevValues.slice(0, idx), ...prevValues.slice(idx + 1)];
     });
   };
   // 기업 비교하기 클릭
   const handleDoCompareClick = () => {
-    if (!(myCompany && compareCompanies.length > 0)) return;
+    if (!isAbleToCompare) return;
     const sumCompanies = [...compareCompanies, myCompany];
     sumCompanies.sort((a, b) => b.actualInvest - a.actualInvest);
     navigate('/my-comparision/result', {
@@ -161,7 +168,7 @@ function MyComparisionPage() {
         />
       )}
       <div className="header-underline"></div>
-      <div className="wrapper">
+      <div>
         <Header />
         <Container>
           <MyCompanyBox
@@ -180,12 +187,14 @@ function MyComparisionPage() {
             />
           )}
           <div className="button-wrapper">
-            <div
+            <motion.div
+              initial={{ scale: 1 }}
+              whileTap={{ scale: isAbleToCompare ? 0.9 : 1 }}
               className={`${btnCompareCompanyClass} "last"`}
               onClick={handleDoCompareClick}
             >
               기업 비교하기
-            </div>
+            </motion.div>
           </div>
         </Container>
       </div>

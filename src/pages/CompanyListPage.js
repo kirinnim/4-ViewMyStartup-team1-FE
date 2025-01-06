@@ -7,6 +7,7 @@ import './CompanyListPage.css';
 import { Link } from 'react-router-dom';
 import CompanylistTableRank from '../components/CompanyList';
 
+
 function CompanyListPage() {
 
   return (

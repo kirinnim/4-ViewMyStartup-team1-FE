@@ -47,6 +47,7 @@
   flex-grow: 1.4;
   flex-basis: 0;
   text-align: center;
+  min-width: 9rem;
 }
 .company-table-body,
 .company-table-body-my {
@@ -115,4 +116,18 @@
   -webkit-box-orient: vertical;
   -webkit-box-align: start;
   -webkit-box-pack: end;
+}
+
+@media (max-width: 743px) {
+  .company-table-title {
+    font-size: 1.6rem;
+  }
+  .company-table-header {
+    font-size: 1.3rem;
+  }
+  .company-table-name,
+  .company-table-body,
+  .company-table-body-my {
+    font-size: 1.3rem;
+  }
 }
