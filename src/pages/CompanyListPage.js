@@ -1,22 +1,20 @@
 //구은모
 
+import React, { useState } from 'react';
 import Container from '../components/Container';
 import KemHeader from '../components/HeaderKEM';
 import './CompanyListPage.css';
 import { Link } from 'react-router-dom';
-import TitleAndSearch from '../components/TitleAndSearch';
-import StartupTableHead from '../components/StartupTableHead';
-import CompanyList from '../components/CompanyList';
-import { startups } from '../db/mockKem';
+import CompanylistTableRank from '../components/CompanyList';
 
 function CompanyListPage() {
+
   return (
     <>
       <KemHeader />
+      <div className="headerLine"></div>
       <Container>
-        <TitleAndSearch />
-        <StartupTableHead />
-        <CompanyList startups={startups} />
+        <CompanylistTableRank />
       </Container>
     </>
   );

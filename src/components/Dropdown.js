@@ -3,7 +3,7 @@
 import React from 'react';
 import './Dropdown.css';
 
-const Dropdown = ({ options, selectedValue, onChange }) => {
+const Dropdown = ({ options = [], selectedValue, onChange }) => {
   return (
     <select
       className="dropdown-btn"

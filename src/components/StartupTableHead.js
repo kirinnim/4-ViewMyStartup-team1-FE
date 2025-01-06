@@ -4,7 +4,7 @@ function StartupTableHead() {
   return (
     <>
       <div className="table-head">
-        <div className="ranking">순위</div>
+        <div className="rankingHeader">순위</div>
         <div className="companyname">기업명</div>
         <div className="script">기업소개</div>
         <div className="category">카테고리</div>
