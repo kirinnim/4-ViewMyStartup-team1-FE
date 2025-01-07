@@ -1,5 +1,5 @@
 import './CompanyPage.css';
-import Header from '../components/HeaderKJY';
+import Header from '../components/my-comparison/HearderJHM';
 import CompanyDetailInfo from '../components/CompanyDetailInfo';
 import CompanyInvestmentSection from '../components/CompanyInvestmentSection';
 import { useLocation, useParams } from 'react-router-dom';
@@ -40,7 +40,7 @@ function CompanyPage() {
     <>
       <Header />
       {company && (
-        <div className="wrapper">
+        <div className='wrapper'>
           {company && <CompanyDetailInfo company={company} />}
           <CompanyInvestmentSection companyId={company.id} />
           {/* <CompanyInvestmentSection companyId={company.id} /> */}

@@ -15,9 +15,11 @@
 }
 
 .company-detail-header-title img {
-  width: 4rem;
-  height: 4rem;
+  width: 12rem;
+  height: 12rem;
   margin-right: 2rem;
+  border-radius: 20rem;
+  border: 0.1rem solid #282828;
 }
 .company-detail-header-title-text {
   display: block;
@@ -51,20 +53,22 @@
 .metric-input {
   flex: 1;
   background-color: #282828;
-  padding: 1.5rem;
+  padding: 4rem 2rem;
   border-radius: 0.5rem;
   color: #fff;
+  display: flex;
+  justify-content: space-between;
 }
 
 .metric-title {
-  color: #ffffff;
+  color: #d8d8d8;
   display: block;
-  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
 }
 
 .metric-value {
   color: #ffffff;
-  font-weight: bold;
+  font-weight: semibold;
   font-size: 1.2rem;
 }
 
@@ -76,20 +80,21 @@
   min-height: 20rem;
 }
 .company-intro span {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   font-weight: 600;
   line-height: 3.5rem;
 }
 .company-intro p {
   font-size: 1.2rem;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 1.8rem;
+  color: #d8d8d8;
 }
 .invest-button-container {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 4rem;
+  margin: 4rem 0;
 }
 .invest-button {
   background-color: #eb5230;
@@ -113,4 +118,96 @@
   margin: 2rem 0;
   line-height: 1px;
   border-bottom: 1px solid #282828;
+}
+/* 태블릿 버전 (768px ~ 1024px) */
+@media screen and (max-width: 1024px) {
+  .company-detail-info {
+    padding: 3rem 2rem;
+  }
+
+  .company-detail-header-title img {
+    width: 10rem;
+    height: 10rem;
+  }
+
+  .company-detail-header-title-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .company-detail-header-title-text p {
+    font-size: 1.8rem;
+  }
+
+  .metric-input {
+    /* padding: 4rem 3rem; */
+  }
+
+  .metric-title,
+  .metric-value {
+    font-size: 1.1rem;
+  }
+}
+
+/* 모바일 버전 (768px 이하) */
+@media screen and (max-width: 768px) {
+  .company-detail-info {
+    padding: 2rem 1rem;
+  }
+
+  .company-detail-header-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .company-detail-header-title img {
+    width: 8rem;
+    height: 8rem;
+    margin-right: 2rem;
+  }
+
+  .company-detail-header-title-text {
+    text-align: left;
+  }
+
+  .company-detail-header-title-text h1 {
+    font-size: 2rem;
+  }
+
+  .company-detail-header-title-text p {
+    font-size: 1.5rem;
+  }
+
+  .metrics-row {
+    gap: 1rem;
+  }
+
+  .metric-input {
+    /* padding: 1.5rem 1rem; */
+  }
+
+  .metric-title,
+  .metric-value {
+    font-size: 0.9rem;
+  }
+
+  .company-intro span {
+    font-size: 1.3rem;
+  }
+
+  .company-intro p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .invest-button {
+    width: 40rem;
+    min-width: 5rem;
+    padding: 1rem 0;
+    font-size: 1rem;
+  }
+
+  .invest-button-container {
+    margin: 3rem 0;
+  }
 }
