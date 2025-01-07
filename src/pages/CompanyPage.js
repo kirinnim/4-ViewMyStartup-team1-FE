@@ -39,6 +39,7 @@ function CompanyPage() {
   return (
     <>
       <Header />
+      <div className='headerLine'></div>
       {company && (
         <div className='wrapper'>
           {company && <CompanyDetailInfo company={company} />}
