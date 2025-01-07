@@ -9,10 +9,10 @@ function TitleAndSearch() {
   const [order, setOrder] = useState('revenue');
   const [keyword, setKeyword] = useState('');
 
-  // 스타트업을 정렬합니다.
+  // 스타트업을 정렬
   const sortedCompanies = [...startups].sort((a, b) => b[order] - a[order]);
 
-  // 키워드에 따라 필터링합니다.
+  // 키워드에 따라 필터링
   const filteredCompanies = sortedCompanies.filter((company) =>
     company.name.toLowerCase().includes(keyword.toLowerCase()),
   );
@@ -26,7 +26,7 @@ function TitleAndSearch() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // 현재는 submit을 통해 검색을 트리거하지만, 실시간 검색을 원한다면 onChange에서 처리할 수 있습니다.
+    // 현재는 submit을 통해 검색을 트리거하지만 실시간 검색을 하고싶다면 onChange에서 처리
   };
 
   return (
