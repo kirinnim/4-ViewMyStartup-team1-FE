@@ -10,6 +10,7 @@ import CompanyTableRank from '../components/my-comparison/CompanyTableRank';
 import { getCompanyRank_jhm } from '../../src/apis/getCompanyRank_jhm';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import CompanyInvestmentModal from '../components/CompanyInvestmentModal';
 
 const dropdownOptionsMap = {
   '누적 투자 금액 높은순': 'highestInvestment',
@@ -22,10 +23,15 @@ const dropdownOptionsMap = {
 
 function MyComparisionResultPage() {
   const location = useLocation();
-  const handleInvestBtnClick = () => {};
   const [rankCompareCompanies, setRankCompareCompanies] = useState([]);
   const [order, setOrder] = useState('highestSales');
   const [loadingError, setLoadingError] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleInvestBtnClick = () => {
+    setModalVisible(true);
+  };
+  const handleModalClose = () => setModalVisible(false);
 
   const handleLoadCompanyRank = async (orderBy) => {
     let rankCompanies;
@@ -33,7 +39,7 @@ function MyComparisionResultPage() {
       setLoadingError(null);
       rankCompanies = await getCompanyRank_jhm(
         location.state.myCompany.id,
-        orderBy,
+        orderBy
       );
     } catch (error) {
       setLoadingError(error);
@@ -80,6 +86,15 @@ function MyComparisionResultPage() {
             </motion.div>
           </div>
         </Container>
+        <div
+          className={`ksh-investment-modal-overlay ${modalVisible ? 'active' : ''}`}
+          onClick={handleModalClose}
+        >
+          <CompanyInvestmentModal
+            company={location.state.myCompany}
+            onClose={handleModalClose}
+          />
+        </div>
       </div>
     </div>
   );
