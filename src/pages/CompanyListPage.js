@@ -1,18 +1,15 @@
 //구은모
 
-import React, { useState } from 'react';
+import React from 'react';
 import Container from '../components/Container';
-import KemHeader from '../components/HeaderKEM';
 import './CompanyListPage.css';
-import { Link } from 'react-router-dom';
 import CompanylistTableRank from '../components/CompanyList';
-
+import HearderJHM from '../components/my-comparison/HearderJHM';
 
 function CompanyListPage() {
-
   return (
     <>
-      <KemHeader />
+      <HearderJHM />
       <div className="headerLine"></div>
       <Container>
         <CompanylistTableRank />

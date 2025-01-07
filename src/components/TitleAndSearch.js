@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { startups } from '../db/mockKem';
+import icSearch from '../assets/images/ic_search.png';
 import './TitleAndSaerch.css';
 
 function TitleAndSearch() {
@@ -36,14 +37,19 @@ function TitleAndSearch() {
         <div className="search">
           <form onSubmit={handleSubmit}>
             <input
-              name="keyword"
+              id="searchInput"
               value={keyword}
               onChange={handleKeywordChange}
               placeholder="검색어를 입력해주세요"
             />
+            <img
+              className="ic-search"
+              src={icSearch}
+              alt="검색"
+              width="24px"
+            />
           </form>
         </div>
-
       </div>
       {/* <div className="companyList">
           {filteredCompanies.map(company => (

@@ -3,8 +3,9 @@
 import './HeaderKEM.css';
 import imgLogo from '../assets/images/vms_logo_2x.png';
 import { Link } from 'react-router-dom';
+import React from 'react';
 
-export default function KemHeader() {
+function KemHeader() {
   return (
     <header className="kemheader">
       <img src={imgLogo} alt="로고" width="112px" height="40px" />
@@ -22,3 +23,5 @@ export default function KemHeader() {
     </header>
   );
 }
+
+export default React.memo(KemHeader);
