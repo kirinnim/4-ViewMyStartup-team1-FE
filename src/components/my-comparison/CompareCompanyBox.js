@@ -19,7 +19,7 @@ export default function CompareCompanyBox({
         </div>
         <motion.div
           initial={{ scale: 1 }}
-          whileTap={{ scale: 0.9 }}
+          whileTap={{ scale: compareCompanies.length < 5 ? 0.9 : 1 }}
           className={btnAddCompareCompanyClass}
           onClick={onAddComparisionClick}
         >
