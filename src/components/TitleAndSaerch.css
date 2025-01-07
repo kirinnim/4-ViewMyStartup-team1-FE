@@ -17,13 +17,13 @@
   justify-content: space-between;
 }
 .search {
-  width: 448px;
-  height: 48px;
-  border: 1px solid #747474;
-  border-radius: 10px;
+  width: 44.8rem;
+  height: 4.8rem;
+  border: 0.1rem solid #747474;
+  border-radius: 1rem;
   display: flex;
   align-items: center;
-  padding-left: 12px;
+  padding-left: 1.2rem;
 }
 .Sort {
   color: white;
