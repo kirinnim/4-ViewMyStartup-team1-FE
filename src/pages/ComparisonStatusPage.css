@@ -35,3 +35,9 @@
   border-radius: 0.5rem;
   margin-top: 1rem;
 }
+.headerLine {
+  width: 100%;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #2e2e2e;
+}
