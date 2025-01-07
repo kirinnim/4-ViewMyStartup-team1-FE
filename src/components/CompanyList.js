@@ -1,7 +1,4 @@
-//구은모
-
 import './CompanyList.css';
-import icSearch from '../assets/images/ic_search.png';
 import Dropdown from './Dropdown';
 import getCompanies from '../apis/getCompanies_KEM';
 import { useEffect, useState } from 'react';
@@ -10,11 +7,10 @@ import convertNumTo100M from '../utils/convertNumTo100M';
 import StartupTableHead from './StartupTableHead';
 import TitleAndSearch from './TitleAndSearch';
 
-function CompanyListTableBody({ company }) {
-
+function CompanyListTableBody({ company, rank }) {
   return (
     <div className="company-table-rank-body">
-      <div className="body-rank-item0">1위</div>
+      <div className="body-rank-item0">{rank}위</div>
       <div className="body-rank-item1">
         <div className="body-rank-item1-wrapper">
           <img src={company.imageUrl} alt={company.name} className="company-table-rank-image" />
@@ -45,39 +41,14 @@ export default function CompanlistTableRank() {
   }, []);
 
   return (
-    // <div className="company-table-rank-edu">
-    //   <div className="company-table-rank-title-edu">
-    //     <span>기업 순위 확인하기</span>
-    //     <div className="search-form-wrapper-edu">
-    //       {/* <form id="searchFormEdu">
-    //         <input id="searchNameEdu" name="search" placeholder="기업명 입력" />
-    //         <img
-    //           className="ic-search-edu"
-    //           src={icSearch}
-    //           alt="검색"
-    //           width="24px"
-    //         />
-    //       </form> */}
-
-    //     </div>
-    //   </div>
     <div className="startup-list">
       <div className="titl-search-dropdown">
         <TitleAndSearch />
         <Dropdown />
       </div>
       <StartupTableHead />
-      {/* <div className="company-table-rank-header">
-        <div className="header-rank-item0">순위</div>
-        <div className="header-rank-item1">기업 명</div>
-        <div className="header-rank-item2">기업 소개</div>
-        <div className="header-rank-item3">카테고리</div>
-        <div className="header-rank-item4">누적 투자 금액</div>
-        <div className="header-rank-item5">매출액</div>
-        <div className="header-rank-item6">고용 인원</div>
-      </div> */}
-      {companies.map((item) => {
-        return <CompanyListTableBody key={item.id} company={item} />;
+      {companies.map((item, index) => {
+        return <CompanyListTableBody key={item.id} company={item} rank={index + 1} />;
       })}
     </div>
   );

@@ -38,15 +38,7 @@
   right: 4.8rem;
   cursor: pointer;
 }
-.ic-search-edu {
-  position: absolute;
-  top: 1rem;
-  right: 1.2rem;
-  cursor: pointer;
-}
-#searchForm > img:hover {
-  opacity: 0.5;
-}
+
 .company-table-rank-header {
   margin: 1.6rem 0;
   height: 4rem;
