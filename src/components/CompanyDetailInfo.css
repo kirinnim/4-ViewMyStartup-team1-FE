@@ -63,13 +63,14 @@
 .metric-title {
   color: #d8d8d8;
   display: block;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: 400;
 }
 
 .metric-value {
   color: #ffffff;
   font-weight: semibold;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
 }
 
 .company-intro {
@@ -80,13 +81,13 @@
   min-height: 20rem;
 }
 .company-intro span {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 600;
   line-height: 3.5rem;
 }
 .company-intro p {
-  font-size: 1.2rem;
-  font-weight: 300;
+  font-size: 1.4rem;
+  font-weight: 400;
   line-height: 1.8rem;
   color: #d8d8d8;
 }
@@ -99,13 +100,14 @@
 .invest-button {
   background-color: #eb5230;
   color: white;
-  padding: 1rem 2rem;
   border: none;
   border-radius: 50rem;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.8rem;
+  font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s;
+  width: 13.1rem;
+  height: 4rem;
 }
 
 .invest-button:hover {
@@ -180,23 +182,27 @@
 
   .metrics-row {
     gap: 1rem;
+    min-width: 37.5rem;
   }
 
   .metric-input {
-    /* padding: 1.5rem 1rem; */
+    padding: 4rem 1rem;
+    display: block;
+    text-align: center;
+    line-height: 3rem;
   }
 
   .metric-title,
   .metric-value {
-    font-size: 0.9rem;
+    font-size: 1.4rem;
   }
 
   .company-intro span {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
   }
 
   .company-intro p {
-    font-size: 1rem;
+    font-size: 1.4rem;
     line-height: 1.5rem;
   }
 
@@ -204,7 +210,6 @@
     width: 40rem;
     min-width: 5rem;
     padding: 1rem 0;
-    font-size: 1rem;
   }
 
   .invest-button-container {

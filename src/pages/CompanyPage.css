@@ -8,3 +8,7 @@
   line-height: 1px;
   border-bottom: 1px solid #282828;
 }
+.headerLine {
+  width: 100%;
+  border-bottom: 1px solid #2e2e2e;
+}

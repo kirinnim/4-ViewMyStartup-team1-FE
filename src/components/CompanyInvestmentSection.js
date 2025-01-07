@@ -20,7 +20,7 @@ function TableRowCompany({ investment }) {
     const rect = e.currentTarget.getBoundingClientRect();
     setDropdownPosition({
       top: rect.bottom + window.scrollY,
-      left: rect.left + window.scrollX - 80,
+      left: rect.left + window.scrollX - 120,
     });
     setIsShowDropdwon(!isShowDropdown);
   };
@@ -28,12 +28,18 @@ function TableRowCompany({ investment }) {
   return (
     <>
       <div className='table-row'>
-        <div className='table-cell'>{investment.name}</div>
-        <div className='table-cell'>{investment.rank}위</div>
         <div className='table-cell'>
-          {formatToKoreanBillion(investment.amount)}억
+          <p>{investment.name}</p>
         </div>
-        <div className='table-cell'>{investment.comment}</div>
+        <div className='table-cell'>
+          <p>{investment.rank}위</p>
+        </div>
+        <div className='table-cell'>
+          <p>{formatToKoreanBillion(investment.amount)}억</p>
+        </div>
+        <div className='table-cell'>
+          <p className='table-cell-comment'>{investment.comment}</p>
+        </div>
         <div className='table-cell'>
           <button className='more-button' onClick={handleMenuClick}>
             ⋮
@@ -89,10 +95,18 @@ export default function CompanyInvestmentSection({ companyId }) {
         </p>
         <div className='data-table'>
           <div className='table-header'>
-            <div className='table-cell'>투자자 이름</div>
-            <div className='table-cell'>순위</div>
-            <div className='table-cell'>투자금액</div>
-            <div className='table-cell'>투자 코멘트</div>
+            <div className='table-cell'>
+              <p className='table-cell-tit'>투자자 이름</p>
+            </div>
+            <div className='table-cell'>
+              <p className='table-cell-tit'>순위</p>
+            </div>
+            <div className='table-cell'>
+              <p className='table-cell-tit'>투자금액</p>
+            </div>
+            <div className='table-cell'>
+              <p className='table-cell-tit'>투자 코멘트</p>
+            </div>
             <div className='table-cell'></div>
           </div>
           <div className='table-body'>
